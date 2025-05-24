@@ -59,7 +59,16 @@ export default {
         bg4: "#55bfe2",
         bg4_dark: "#00A5DE",
         bg5: "#4ab8e6",
-        bg6:"#495566",
+        // -------------------------------------
+        bg6: "#495566",
+        hederColor: "#f2f3d2",
+        hederColor2: "#6f8c97",
+        hederColor3: "#b0bfae",
+        headerBg: "#263045",
+        headerBg2: "#0d182f",
+        headerbg3: "#464f61",
+        headerBgSelected: "#333d50",
+        // ----------------------------------
         yellow: "#e5ce00",
         // pink: "#ad005c",
         green: "#17B15E",
