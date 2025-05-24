@@ -5,7 +5,7 @@ import {
   faChevronDown,
   faChevronUp,
   faLock,
-  faCircle, 
+  faCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 const marketOptions = [
@@ -14,10 +14,8 @@ const marketOptions = [
   { id: "TOTAL", label: "TOTAL", headers: ["OVER", "UNDER"] },
 ];
 
-
-const sampleMatchData = {
+const sampleMatchData ={
   1: [
-    // Corresponds to Russia, Liga Pro (league.id)
     {
       id: "match1",
       team1: "Izumrud-pro",
@@ -26,28 +24,28 @@ const sampleMatchData = {
       score2: "0",
       time: "0:0, (0:0) 3'",
       odds: [null, null, null],
+      flags: ["none", "none", "green"], // flags for each odds box
       isLive: true,
       isLocked: false,
       lockedValue: "+35",
     },
   ],
   2: [
-    // Ethiopia
     {
       id: "match2",
       team1: "Ethiopian Coffee",
       team2: "Saint George",
       score1: "1",
       score2: "1",
-      time: "2nd Half,7:5, (4:2) 5'",
+      time: "2nd Half | 7:5, (4:2) 5'",
       odds: ["1.85", "3.20", "4.00"],
+      flags: ["red", "none", "green"],
       isLive: true,
       isLocked: true,
       lockedValue: "+40",
     },
   ],
   3: [
-    // Indonesia
     {
       id: "match2",
       team1: "Indonesia Coffee",
@@ -56,13 +54,13 @@ const sampleMatchData = {
       score2: "5",
       time: "FT",
       odds: ["2.05", "4.20", "2.00"],
+      flags: ["green", "green", "red"],
       isLive: false,
       isLocked: true,
       lockedValue: "+55",
     },
   ],
   4: [
-    // Nepal
     {
       id: "match2",
       team1: "Nepal Coffee",
@@ -71,13 +69,14 @@ const sampleMatchData = {
       score2: "5",
       time: "FT",
       odds: ["2.05", "4.20", "2.00"],
+      flags: ["none", "none", "none"],
       isLive: false,
       isLocked: true,
       lockedValue: "+15",
     },
   ],
-  // Add match data for other league IDs
 };
+
 
 const leagueData = [
   {
@@ -166,6 +165,7 @@ export default function Table() {
             </ul>
           )}
         </div>
+        <div className="market-league-separator-2"></div>
         <div className="column-headers">
           {selectedMarket.headers.map((header) => (
             <span key={header} className="column-header-item">
@@ -200,7 +200,7 @@ export default function Table() {
                   </div>
                 </div>
                 <FontAwesomeIcon
-                  icon={isExpanded ? faChevronUp : faChevronDown} // Dynamic icon
+                  icon={isExpanded ? faChevronUp : faChevronDown}
                   className="league-expansion-chevron"
                 />
               </div>
@@ -208,59 +208,70 @@ export default function Table() {
                 <div className="match-details-container">
                   {matches.map((match) => (
                     <div key={match.id} className="match-row">
-                      <div className="match-info">
-                        {/* ... team names and scores ... */}
-                        <div className="team-names">
-                          <span>{match.team1}</span>
-                          <span>{match.team2}</span>
-                        </div>
-                        <div className="team-scores">
-                          <span>{match.score1}</span>
-                          <span>{match.score2}</span>
-                        </div>
-                      </div>
-
-                      {/* THIS IS THE CORRECTED SECTION */}
-                      <div
-                        className={`match-odds headers-${selectedMarket.headers.length}`}
-                      >
-                        {selectedMarket.headers.map((headerKey, index) => (
-                          <div key={headerKey} className="odds-box">
-                            {match.odds &&
-                            match.odds[index] !== null &&
-                            match.odds[index] !== undefined
-                              ? match.odds[index]
-                              : ""}
+                      <div className="match-details">
+                        <div className="match-info">
+                          <div className="team-names">
+                            <span>{match.team1}</span>
+                            <span>{match.team2}</span>
                           </div>
-                        ))}
-                      </div>
-                      {/* END OF CORRECTED SECTION */}
-
-                      <div className="match-footer">
-                        {/* ... match time and lock icon ... */}
-                        <div className="match-time">
-                          {match.isLive && (
-                            <FontAwesomeIcon
-                              icon={faCircle}
-                              className="live-indicator"
-                            />
-                          )}
-                          <span>{match.time}</span>
+                          <div className="team-scores">
+                            <span>{match.score1}</span>
+                            <span>{match.score2}</span>
+                          </div>
                         </div>
-                        {match.isLocked ? (
-                          <FontAwesomeIcon
-                            icon={faLock}
-                            className="lock-icon"
-                          />
-                        ) : (
-                          <span className="unlocked-value">
-                            {match.lockedValue}
-                          </span>
-                        )}
+
+                        <div
+                          className={`match-odds headers-${selectedMarket.headers.length}`}
+                        >
+                          {selectedMarket.headers.map((headerKey, index) => (
+                            <div key={headerKey} className="bg-[#576579] text-[#e5ce00] px-[5px] py-[10px] text-center text-xsm font-xs min-h-[54px] flex items-center justify-center cursor-pointer transition-colors duration-200 ease-in-out border border-black border-t-0 relative">
+                              <div className="odds-value">
+                                {match.odds?.[index] ?? ""}
+                              </div>
+                              {match.flags?.[index] === "green" && (
+                                <FontAwesomeIcon
+                                  icon={faChevronUp}
+                                  className="green-arrow1"
+                                />
+                                // <FontAwesomeIcon
+                                //   icon="fa-solid fa-angle-down"
+                                //   className="green-arrow"
+                                // />
+                              )}
+                              {match.flags?.[index] === "red" && (
+                                <FontAwesomeIcon
+                                  icon={faChevronDown}
+                                  className="red-arrow"
+                                />
+                              )}
+                            </div>
+                          ))}
+                        </div>
+
+                        <div className="match-footer">
+                          <div className="match-time">
+                            {match.isLive && (
+                              <FontAwesomeIcon
+                                icon={faCircle}
+                                className="live-indicator"
+                              />
+                            )}
+                            <span>{match.time}</span>
+                          </div>
+                          {match.isLocked ? (
+                            <FontAwesomeIcon
+                              icon={faLock}
+                              className="lock-icon"
+                            />
+                          ) : (
+                            <span className="unlocked-value">
+                              {match.lockedValue}
+                            </span>
+                          )}
+                        </div>
                       </div>
                     </div>
                   ))}
-                  {/* <div className="market-league-separator"></div> */}
                 </div>
               )}
               {isExpanded && matches.length === 0 && (

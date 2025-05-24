@@ -14,7 +14,8 @@
 body { /* Optional: set body font if not set globally */
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   background-color: var(--market-bg); /* To see component on dark bg */
-  overflow-x: hidden;
+  height: auto;
+  overflow: auto;
 }
 
 .market-display-wrapper {
@@ -25,10 +26,18 @@ body { /* Optional: set body font if not set globally */
   color: var(--text-color);
   /* border-radius: 8px; */
   overflow: hidden; /* To contain rounded corners */
+  overflow-y: scroll;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .market-header {
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--header-bg);
+  padding: 12px 16px;
+  height: 28px;
+  border-bottom: 1px solid var(--border-color); */
   display: flex;
       align-items: center;
       justify-content: space-between;
@@ -41,7 +50,6 @@ body { /* Optional: set body font if not set globally */
 
 .market-selector-container {
   position: relative;
-  display: inline-block;
 }
 
 .market-selector-button {
@@ -74,29 +82,29 @@ body { /* Optional: set body font if not set globally */
   font-size: 12px;
 }
 
-@media (max-width: 321px){
+@media (max-width: 320px) {
+  .market-selector-button{
+  width: 50px ;
+  }
+  div.column-headers {
+    border: none ;
+    /* background-color: red; */
+    outline: none;
+  }
+}
+@media (max-width: 375px) and (min-width: 321px){
+  .market-selector-button{
+  width: 150px ;
+  }
+  div.column-headers {
+    border: none ;
+    /* background-color: red; */
+    outline: none;
+  }
+}
+@media (max-width: 426px) and (min-width:376px) {
   .market-selector-button{
   width: 36vw ;
-  }
-  div.column-headers {
-    border: none ;
-    /* background-color: red; */
-    outline: none;
-  }
-}
-@media (max-width: 376px) and (min-width: 321px){
-  .market-selector-button{
-  width: 48vw ;
-  }
-  div.column-headers {
-    border: none ;
-    /* background-color: red; */
-    outline: none;
-  }
-}
-@media (max-width: 431px) and (min-width:377px) {
-  .market-selector-button{
-  width: 49vw;
   }
   div.column-headers {
     border: none ;
@@ -105,9 +113,9 @@ body { /* Optional: set body font if not set globally */
     gap: 20px;
   }
 }
-@media (max-width: 769px) and (min-width:432px){
+@media (max-width: 769px) and (min-width:427px) {
   .market-selector-button{
-  width: 69vw;
+  width: 68vw;
   }
   .market-league-separator-2{
     display: none;
@@ -120,7 +128,7 @@ body { /* Optional: set body font if not set globally */
 
 .market-dropdown-list {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 5px);
   left: 0;
   /* background-color: var(--dropdown-bg); */
   background-color: black;
@@ -129,7 +137,7 @@ body { /* Optional: set body font if not set globally */
   margin: 0;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  z-index: 999;
+  z-index: 100;
   width: max-content; /* Adjust width based on content */
   min-width: 150px;
 }
@@ -161,7 +169,7 @@ body { /* Optional: set body font if not set globally */
       justify-content: space-between;
       border: 0.1px solid #000000;
       /* border-bottom: none; */
-      padding: 1px 18px;
+      padding: 1px 5px;
 }
 
 .column-header-item {
@@ -347,7 +355,7 @@ body { /* Optional: set body font if not set globally */
 }
 @media (max-width: 426px) {
   .match-info{
-    min-width: 248px  !important;
+    min-width: 252px  !important;
     /* background-color: red; */
   }
 }
@@ -381,17 +389,9 @@ body { /* Optional: set body font if not set globally */
   color: #f1c40f; /* Yellowish color for scores */
 }
 
-.match-odds {
-  display: grid;
-  /* Dynamically set grid-template-columns based on selectedMarket.headers.length */
-  /* For example, if 3 headers: grid-template-columns: repeat(3, 1fr); */
-  gap: 0px; /* Gap between odds boxes */
-  align-items: center; /* Center content in odds boxes vertically */
-}
 
 .odds-box {
   background-color: #3a4759;
-  /* color: var(--text-color); */
   color: yellow;
   padding: 10px 5px;
   text-align: center;
@@ -447,6 +447,7 @@ body { /* Optional: set body font if not set globally */
 
 .lock-icon {
   font-size: 0.8rem;
+  color: gray;
 }
 
 .no-matches-message {
@@ -456,9 +457,9 @@ body { /* Optional: set body font if not set globally */
   color: rgba(255, 255, 255, 0.5);
 }
 
-/* Dynamic grid columns for match-odds based on number of headers */
+/* Dynamic grid columns for match-odds-calender based on number of headers */
 .match-odds.headers-2 { grid-template-columns: repeat(2, 1fr); }
-.match-odds.headers-3 { grid-template-columns: repeat(3, 1fr); padding: 0px; }
+.match-odds.headers-3 { grid-template-columns: repeat(3, 1fr); padding: 7px; }
 /* Add more if you have market types with more than 3 headers */
 /* --------------------------------------------- */
 .market-league-separator {
@@ -477,14 +478,7 @@ body { /* Optional: set body font if not set globally */
   border-top: 1px solid #111; /* optional subtle border */
   border-bottom: 1px solid #111;
 }
-.market-league-separator-data {
-  height: 1px;
-  background-color: #000;
-  width: 100%;
-  margin: 0;
-  border-top: 1px solid #111; /* optional subtle border */
-  border-bottom: 1px solid #111;
-}
+
 
 
 
@@ -504,7 +498,28 @@ body { /* Optional: set body font if not set globally */
   font-weight: bold;
 }
 
-.green-arrow1 {
+/* .green-arrow {
+  color: green;
+  font-size: 0.8rem;
+  position: absolute;
+  top: 2px;
+  right: 2px;   
+   transform: rotate(49deg);
+} */
+
+
+/* .green-arrow2 {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid limegreen;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: rotate(-93deg)
+} */
+
+.green-arrow2 {
   color: transparent;
   font-size: 10px;
   font-weight: 15px;
@@ -515,7 +530,7 @@ body { /* Optional: set body font if not set globally */
    /* display: none; */
 }
 
-.green-arrow1 {
+.green-arrow2 {
   width: 0px;
   height: 0px;
   border-left: 10px solid transparent;
@@ -524,7 +539,7 @@ body { /* Optional: set body font if not set globally */
   top: 0px;
   right: 0px;
   transform: rotate(-93deg);
-  display: block;
+  /* display: block; */
 }
 
 
@@ -538,7 +553,32 @@ body { /* Optional: set body font if not set globally */
   right: 0;
   /* transform: rotate(272deg) */
   transform: rotate(-93deg)
-
 }
 
+
+.scroll-wrapper {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-to-top:hover {
+  background-color: #0056b3;
+}
 

@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from "react";
-import "./Game.css";
+import "./Game1.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // [Icons list omitted for brevity]
 import {

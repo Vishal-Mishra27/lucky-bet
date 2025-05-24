@@ -103,12 +103,12 @@
 
 /* ------------------------------------------ */
 
-.search-container {
+/* .search-container {
   position: relative;
   display: flex;
   align-items: center;
   
-}
+} */
 
 .search-input {
   margin-left: 0px;
@@ -158,12 +158,12 @@
   align-items: center;
   flex: 1;
 }
-
+/* 
 .search-container {
   display: flex;
   align-items: center;
   width: 100%;
-}
+} */
 
 .search-input {
   flex: 1;
@@ -215,3 +215,39 @@
   outline: none;
 } */
 
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+/* Wrapper with animation */
+.search-wrapper {
+  overflow: hidden;
+  width: 0;
+  transition: width 0.3s ease;
+  margin-right: 10px; /* Space between input and button */
+}
+
+.search-wrapper.show {
+  width: 100%; /* Or whatever width you'd like the input to be */
+}
+
+.search-wrapper.hide {
+  width: 0;
+}
+
+/* The actual input */
+.search-input {
+  width: 100%;
+  padding: 6px 12px;
+  border: 1px solid rgb(18, 29, 51);
+  border-radius: 4px;
+  background-color: rgb(18 29 51);
+  color: white;
+  font-size: 12px;
+  font-weight: 400;
+  outline: none;
+}

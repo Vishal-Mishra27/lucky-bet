@@ -1,32 +1,28 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
-      'xs2': '375px',
-      'xs1': '390px',
-      'xs': '400px',
-      'xsm': '500px',
-      'sm': '640px',
-      'md': '800px',
-      'lg': '1024px',
-      'xl': '1280px',
-      '2xl': '1536px',
-      '3xl': '1836px',
+      xs2: "375px",
+      xs1: "390px",
+      xs: "400px",
+      xsm: "500px",
+      sm: "640px",
+      md: "800px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+      "3xl": "1836px",
     },
     extend: {
-
       keyframes: {
         translateAnimation: {
-          '0%': { transform: 'translate(0, 0)' },
-          '100%': { transform: 'translate(var(--x-target), var(--y-target))' },
+          "0%": { transform: "translate(0, 0)" },
+          "100%": { transform: "translate(var(--x-target), var(--y-target))" },
         },
         pulseFadeOut: {
-          '0%': { opacity: 1, transform: 'scale(0)' },
-          '100%': { opacity: 0, transform: 'scale(1)' },
+          "0%": { opacity: 1, transform: "scale(0)" },
+          "100%": { opacity: 0, transform: "scale(1)" },
         },
         zoomIn: {
           "0%": { transform: "scale(1)" },
@@ -36,18 +32,22 @@ export default {
       },
       animation: {
         zoomIn: "zoomIn 1s ease-in-out",
-        translateAnimation: 'translateAnimation 2s ease-in-out forwards',
-        'pulse-fade': 'pulseFadeOut 2s ease-in-out infinite',
+        translateAnimation: "translateAnimation 2s ease-in-out forwards",
+        "pulse-fade": "pulseFadeOut 2s ease-in-out infinite",
       },
+      animation: {
+        "bounce-slow": "bounce 1.2s infinite",
+      },
+
       fontFamily: {
-        roboto: [' roboto, sans-serif;'],
-        inter: ['Inter', 'sans-serif'],
+        roboto: [" roboto, sans-serif;"],
+        inter: ["Inter", "sans-serif"],
       },
       fontSize: {
-        xs: '11px',
-        xsm: '13px',
-        sm: '16px',
-        lg: '18px',
+        xs: "11px",
+        xsm: "13px",
+        sm: "16px",
+        lg: "18px",
       },
       colors: {
         mainBg: "#000C24",
@@ -59,7 +59,8 @@ export default {
         bg4: "#55bfe2",
         bg4_dark: "#00A5DE",
         bg5: "#4ab8e6",
-        yellow: "#DD9138",
+        bg6:"#495566",
+        yellow: "#e5ce00",
         // pink: "#ad005c",
         green: "#17B15E",
         voilet: "#9B48DB",
@@ -95,20 +96,23 @@ export default {
         footballIcon: "#1BAB7D",
         tennisBg: "#1AA377",
         tennisIcon: "#A19E3E",
-      }
+      },
     },
   },
   plugins: [
     function ({ addUtilities }) {
-      addUtilities({
-        '.hide-scrollbar': {
-          '-ms-overflow-style': 'none', /* IE and Edge */
-          'scrollbar-width': 'none', /* Firefox */
+      addUtilities(
+        {
+          ".hide-scrollbar": {
+            "-ms-overflow-style": "none" /* IE and Edge */,
+            "scrollbar-width": "none" /* Firefox */,
+          },
+          ".hide-scrollbar::-webkit-scrollbar": {
+            display: "none" /* Chrome, Safari, and Opera */,
+          },
         },
-        '.hide-scrollbar::-webkit-scrollbar': {
-          display: 'none', /* Chrome, Safari, and Opera */
-        },
-      }, ['responsive', 'hover'])
-    }
+        ["responsive", "hover"]
+      );
+    },
   ],
 };

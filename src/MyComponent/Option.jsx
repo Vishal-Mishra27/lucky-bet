@@ -34,21 +34,20 @@ export default function Option() {
 
       <div className="options-right" style={{ flex: 1 }}>
         <div className="search-container">
-          {isSearchOpen && (
+          <div className={`search-wrapper ${isSearchOpen ? "show" : "hide"}`}>
             <input
               type="text"
               className="search-input"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search for a competition or team"
-              autoFocus
             />
-          )}
+          </div>
+
           <button
             className="option-button search-button"
             aria-label="Search"
             onClick={toggleSearch}
-            style={{ marginLeft: isSearchOpen ? "0px" : "auto" }}
           >
             <FontAwesomeIcon
               icon={isSearchOpen ? faTimes : faSearch}

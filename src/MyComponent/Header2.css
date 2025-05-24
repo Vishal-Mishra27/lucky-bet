@@ -4,7 +4,7 @@
 
 :root {
   /* --navbar-bg: #2c3e50; */
-  --navbar-text-color: #ecf0f1;
+  --navbar-text-color: #c5c9ca;
   --navbar-active-color: #3498db;
   --navbar-underline-color: #3498db;
   --navbar-divider-color: rgba(236, 240, 241, 0.2); /* Color for the divider */
@@ -73,6 +73,7 @@
 
 .navbar-item a {
   color: var(--navbar-text-color);
+  /* color: gray; */
   text-decoration: none;
   padding: 0 10px; /* Reduced horizontal padding as item itself expands */
   width: 100%; /* Make 'a' tag take full width of 'li' */
@@ -80,7 +81,7 @@
   display: flex;
   align-items: center;
   justify-content: center; /* Center text within the 'a' tag */
-  font-size: 1rem;
+  font-size: 12px;
   /* font-weight: 100; */
   transition: color 0.3s ease;
   position: relative;
@@ -105,6 +106,7 @@
 /* Hover state */
 .navbar-item:hover a {
   /* color: var(--navbar-active-color); */
+  color: #ecf0f1;
 }
 
 .navbar-item:hover a::after {
@@ -163,8 +165,8 @@
     justify-content: center; /* Or flex-start if you prefer */
   }
   .navbar-item a {
-    padding: 0 10px; /* Adjust padding for smaller screens */
-    font-size: 13px;
+    padding: 0 0px; /* Adjust padding for smaller screens */
+    font-size: 12px;
   }
   .navbar-item a::after {
     height: 2px;
@@ -196,7 +198,8 @@
   position: sticky;
   top: 0;
   z-index: 1000; /* Ensure it stays on top of other content */
-  background-color: rgb(0 12 36); 
+  /* background-color: rgb(0 12 36);  */
+  background-color: #0d182f; 
   /* background-color: rgb(24, 73, 171); Adjust to match your design */
  
 }
@@ -207,13 +210,13 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 20px;
+  /* gap: 20px; */
 }
 
 .navbar-item {
   cursor: pointer;
-  padding: 8px 12px;
-  font-weight: 500;
+  padding: 0px 0px;
+  /* font-weight: 0; */
   color: #333;
   transition: background-color 0.3s ease;
 }
