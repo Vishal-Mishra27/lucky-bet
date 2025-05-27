@@ -22,8 +22,8 @@ export default function Header3() {
     console.log(`Navigating to ${menuItems.find(item => item.id === itemId)?.link}`);
   };
   return (
-    <nav className="flex items-center px-[25px] h-[37px] text-[color:var(--navbar-text-color)] uppercase font-['Roboto','Arial'] mt-5">
-      <ul className="w-[50%] list-none flex items-center h-full m-0 p-0 flex-grow justify-start shadow-[0_2px_10px_rgba(0,0,0,0.1)] bg-headerBg2 rounded-[5px]">
+    <nav className="flex items-center px-2 h-[37px] text-[color:var(--navbar-text-color)] uppercase font-['Roboto','Arial'] mt-5 rounded-sm">
+      <ul className="w-[50%] list-none flex items-center h-[80%] m-0 p-0 flex-grow justify-start bg-headerBg2 overflow-hidden border-none rounded-lg">
         {menuItems.map((item) => (
           <li
             key={item.id}

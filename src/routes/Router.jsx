@@ -10,6 +10,12 @@ import CasinoHome from "../pages/casino/CasinoHome";
 import Livepage from "../MyComponent/Livepage";
 import LiveCalender from "../MyComponents2/LiveCalender";
 import Result from "../MyComponent3/Result";
+import LiveCasino from "../MyComponents4/LiveCasino";
+import GamePage from "../MyComponents5/GamePage";
+import VirtualSports from "../MyComponents6/VirtualSports";
+import ESports from "../MyComponents7/ESports";
+import ResultEsport from "../MyComponents8/ResultEsport";
+import Upcoming from "../MyComponents9/Upcoming";
 
 export const Router = createBrowserRouter([
   {
@@ -21,7 +27,13 @@ export const Router = createBrowserRouter([
         // element: <Home />,
         // element: <LiveCalender />,
         // element: <Livepage />,
-        element: <Result />,
+        // element: <Result />,
+        // element: <LiveCasino />,
+        // element: <GamePage />,
+        // element:<VirtualSports />
+        // element:<ESports />
+        element:<ResultEsport />
+          //  element:<Upcoming />,
       },
     ],
   },
@@ -39,9 +51,9 @@ export const Router = createBrowserRouter([
   {
     path: "/",
     element: (
-      //   <ProtectedRoute>
+        <ProtectedRoute>
       <Layout />
-      //   </ProtectedRoute>
+         </ProtectedRoute>
     ),
     children: [
       {

@@ -93,7 +93,7 @@ const competitions = [
 
 
 
-export default function FilterPannel() {
+export default function FilterOption() {
   const [startDate, setStartDate] = useState("2025-05-24");
   const [endDate, setEndDate] = useState("2025-05-24");
   const [selectedSport, setSelectedSport] = useState("Football");

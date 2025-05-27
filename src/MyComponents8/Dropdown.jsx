@@ -156,7 +156,7 @@ const matchData = [
   },
 ];
 
-export default function LeagueMatches() {
+export default function Dropdown() {
   const [openLeague, setOpenLeague] = useState(null);
 
   return (
