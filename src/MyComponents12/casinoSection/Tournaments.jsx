@@ -1,8 +1,8 @@
 import React from 'react'
 import DarkLightMode from '../../MyComponents13/casinoComponents/DarkLightMode'
-import GameItems from '../../myComponents13/casinoComponents/GameItems'
-import TopGameTourant from '../../myComponents13/casinoComponents/TopGameTourant'
-import Header2 from '../../MyComponent/Header2'
+import GameItems from "../../MyComponents13/casinoComponents/GameItems";
+import TopGameTourant from "../../MyComponents13/casinoComponents/TopGameTourant";
+// import Header2 from '../../MyComponent/Header2'
 
 const Tournaments = () => {
   return (
