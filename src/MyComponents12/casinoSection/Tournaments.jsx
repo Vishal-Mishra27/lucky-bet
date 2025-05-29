@@ -1,5 +1,5 @@
 import React from 'react'
-import DarkLightMode from '../../myComponents13/casinoComponents/DarkLightMode'
+import DarkLightMode from '../../MyComponents13/casinoComponents/DarkLightMode'
 import GameItems from '../../myComponents13/casinoComponents/GameItems'
 import TopGameTourant from '../../myComponents13/casinoComponents/TopGameTourant'
 import Header2 from '../../MyComponent/Header2'
