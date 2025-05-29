@@ -1,44 +1,16 @@
 import React, { useState } from "react";
-import SliderImage1 from "../assets/sliderImage1.webp";
-import SliderImage2 from "../assets/sliderImage2.webp";
-import SliderImage3 from "../assets/sliderImage3.webp";
+import { images } from "../MyComponents5/AllGamesData";
 
-import GameGallery1 from "../assets/GameGalleryImage1.webp";
-import GameGallery2 from "../assets/GameGalleryImage2.webp";
-import GameGallery3 from "../assets/GameGalleryImage3.webp";
-import GameGallery4 from "../assets/GameGalleryImage4.webp";
-import GameGallery5 from "../assets/GameGalleryImage5.webp";
-import GameGallery6 from "../assets/GameGalleryImage6.gif";
-import GameGallery7 from "../assets/GameGalleryImage7.gif";
-
-const images = [
-  { src: GameGallery1, title: "Richie Fruits Roulette" },
-  { src: GameGallery7, title: "Poly Blackjack" },
-  { src: GameGallery2, title: "Poly Roulette" },
-  { src: GameGallery3, title: "Dreamz Blackjack" },
-  { src: GameGallery6, title: "Dreamz Roulette" },
-  { src: GameGallery4, title: "Dreamz Roulette" },
-  { src: GameGallery5, title: "Dreamz Roulette" },
-  { src: SliderImage3, title: "VIP Ortak" },
-  { src: SliderImage1, title: "Richie Wheel" },
-  { src: SliderImage2, title: "Dreamz Dealer" },
-  { src: GameGallery1, title: "Richie Fruits Roulette" },
-  { src: GameGallery7, title: "Poly Blackjack" },
-  { src: GameGallery2, title: "Poly Roulette" },
-  { src: GameGallery3, title: "Dreamz Blackjack" },
-  { src: GameGallery6, title: "Dreamz Roulette" },
-  { src: GameGallery4, title: "Dreamz Roulette" },
-];
-
-const AllGames = () => {
+const AllGames = ({ maxItems }) => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const handleClick = (index) => {
     setActiveIndex(index === activeIndex ? null : index);
   };
+  const displayedItems = maxItems ? images.slice(0, maxItems) : images;
 
   return (
-    <div className="p-4">
+    <div className="p-4 lg:pb-0">
       <div
         className="grid gap-2 
         grid-cols-2
@@ -47,12 +19,13 @@ const AllGames = () => {
   sm:grid-cols-4 
   x5:grid-cols-5 
   x6:grid-cols-6 
-   mx-auto"
+  lg:grid-cols-4
+   lg:mx-20"
       >
-        {images.map((img, index) => (
+        {displayedItems.map((img, index) => (
           <div
             key={index}
-            className="relative rounded-[10px] overflow-hidden shadow-lg cursor-pointer aspect-[4/3]"
+            className="relative rounded-[10px] overflow-hidden shadow-lg cursor-pointer aspect-[4/3] lg:rounded"
             onClick={() => handleClick(index)}
           >
             <img

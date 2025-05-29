@@ -123,6 +123,7 @@ export default function GameMenu() {
       selectedColor: "#2d792e",
       notificationCount: 30,
     },
+    
   ];
 
   const [selectedGame, setSelectedGame] = useState(gameMenuItems[0].id);
@@ -196,10 +197,53 @@ export default function GameMenu() {
     setSelectedGame(gameId);
   };
 
+  const [showLeftButton, setShowLeftButton] = useState(false);
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+
+    const checkScrollPosition = () => {
+      if (!container) return;
+      setShowLeftButton(container.scrollLeft > 10); // 10px buffer
+    };
+
+    container?.addEventListener("scroll", checkScrollPosition);
+    checkScrollPosition(); // Initial check
+
+    return () => container?.removeEventListener("scroll", checkScrollPosition);
+  }, []);
+  
   return (
-    <div className=" text-white py-2">
+    <div className="relative text-white py-2 lg:px-4">
+      {/* Left Scroll Button */}
+      {showLeftButton &&  <button
+        onClick={() =>
+          scrollContainerRef.current.scrollBy({
+            left: -150,
+            top:100,
+            behavior: "smooth",
+          })
+        }
+        className="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-[#07122C] hover:bg-[#11264d] p-2 rounded-full shadow-md mt-2"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-4 w-4 text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>}
+
+      {/* Scrollable Game Menu */}
       <div
-        className="max-w-full overflow-x-auto px-1 flex gap-1 scrollbar-hide "
+        className="max-w-full overflow-x-auto px-1 flex gap-1 scrollbar-hide lg:pr-10 lg:pl-10"
         ref={scrollContainerRef}
       >
         {gameMenuItems.map((item) => {
@@ -209,10 +253,10 @@ export default function GameMenu() {
               key={item.id}
               ref={isSelected ? selectedItemRef : null}
               onClick={() => handleGameSelect(item.id)}
-              className={`h-16 rounded-lg border-2 overflow-hidden cursor-pointer flex items-center justify-center transition-all
+              className={`h-16 rounded-lg border-2 overflow-hidden cursor-pointer flex items-center justify-center transition-all lg:h-10 lg:rounded lg:border-none lg:mt-5
                 ${
                   item.name.length > 14
-                    ? "min-w-[110px]"
+                    ? "min-w-[150px]"
                     : item.name.length > 10
                     ? "min-w-[90px]"
                     : "min-w-[70px]"
@@ -233,18 +277,18 @@ export default function GameMenu() {
                 }}
               >
                 <div
-                  className={`absolute inset-0 rounded-lg transition-all duration-300 `}
+                  className={`absolute inset-0 rounded-lg transition-all duration-300`}
                 ></div>
-                <div className="relative  flex flex-col items-center">
+                <div className="relative flex flex-col lg:gap-1 items-center lg:flex-row">
                   <div className="relative inline-block mb-0">
                     <FontAwesomeIcon
                       icon={getGameIcon(item.name)}
-                      className="text-2xl transition-transform"
+                      className="text-2xl lg:text-[13px] transition-transform"
                       style={{ color: isSelected ? "black" : "#8d929d" }}
                     />
                   </div>
                   <h3
-                    className={`text-[10px] leading-[1.2] font-bold mt-1 ${
+                    className={`text-[10px] leading-[1.2] font-bold mt-1 lg:text-[13px] ${
                       isSelected ? "text-black" : "text-[#8d929d]"
                     }`}
                   >
@@ -256,6 +300,29 @@ export default function GameMenu() {
           );
         })}
       </div>
+
+      {/* Right Scroll Button */}
+      <button
+        onClick={() =>
+          scrollContainerRef.current.scrollBy({ left: 150, behavior: "smooth" })
+        }
+        className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-[#07122C] hover:bg-[#11264d] p-2 rounded-full shadow-md mt-2"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-4 w-4 text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
     </div>
   );
 }

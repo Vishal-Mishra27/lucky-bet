@@ -23,19 +23,54 @@ import LanguageModal from "../../components/Modal/LanguageModal";
 import ListModal from "../../reusableComponents/Modal/ListModal";
 
 import { useNavigate } from "react-router-dom";
+import GameMenu from "../../MyComponent/Game"
+import SliderBar from "../../MyComponents4/SliderBar";
+import GameGallery from "../../MyComponents4/GameGallery";  
+import AllGames from "../../MyComponents5/AllGames";
+import Table2 from "../../MyComponents2/Table2";
 
 
 
 const gameCategoryTabs = [
-    { icon: <RiRadioButtonLine size={20} />, name: "LIVE", isTop: false },
-    { icon: <IoFootball size={20} />, name: "SPORTS", isTop: false },
-    { icon: <MdOutlineCasino size={20} />, name: "CASINO", isTop: false },
-    { icon: <MdOutlineCasino size={20} />, name: "LIVE CASINO", isTop: false },
-    { icon: <MdOutlineCasino size={20} />, name: "BLAST", isTop: true },
-    { icon: <LiaDiceD6Solid size={20} />, name: "GAMES", isTop: false },
-    { icon: <IoGameController size={20} />, name: "E-SPORTS", isTop: false },
-    { icon: <IoGameController size={20} />, name: "VIRTUAL SPORTS", isTop: false },
-    { icon: <GiTrebuchet size={20} />, name: "TREBUCHET", isTop: false },
+  {
+    icon: <RiRadioButtonLine size={20} />,
+    name: "LIVE",
+    isTop: false,
+    route: "live/livepage",
+  },
+  {
+    icon: <IoFootball size={20} />,
+    name: "Games",
+    isTop: false,
+    route: "gamepage",
+  },
+  {
+    icon: <MdOutlineCasino size={20} />,
+    name: "LIVE CASINO",
+    isTop: false,
+    route: "livecasino",
+  },
+  // { icon: <MdOutlineCasino size={20} />, name: "LIVE CASINO", isTop: false },
+  {
+    icon: <MdOutlineCasino size={20} />,
+    name: "E-SPORT",
+    isTop: true,
+    route: "esports",
+  },
+  // {
+  //   icon: <LiaDiceD6Solid size={20} />,
+  //   name: "GAMES",
+  //   isTop: false,
+  //   // route: "virtualsports",
+  // },
+  // { icon: <IoGameController size={20} />, name: "E-SPORTS", isTop: false },
+  {
+    icon: <IoGameController size={20} />,
+    name: "VIRTUAL SPORTS",
+    isTop: false,
+    route: "virtualsports",
+  },
+  { icon: <GiTrebuchet size={20} />, name: "TREBUCHET", isTop: false },
 ];
 const upcomingMatchesTabs = [
     { name: "0-15" },
@@ -178,8 +213,9 @@ const matches = [
 function Home() {
     const navigate = useNavigate();
     
-  const goToLivePage = () => {
-    navigate("/livepagemy");
+  const goToLivePage = (route) => {
+    console.log("name is ",route)
+    navigate(`/${route}`);
   };
     const [loading, setLoading] = useState(false);
     const [isOpenHeaderModal, setIsOpenHeaderModal] = useState(null);
@@ -196,6 +232,8 @@ function Home() {
     const [activeMatchesTab, setActiveMatchesTab] = useState("0-15");
     const [seletedData, setSeletedData] = useState("");
     const modalRef = useRef();
+    
+    const isHome = location.pathname === "";
     // const { gameName } = useSelector((state) => state.AllGamesContainer);
     const userId = localStorage.getItem("userId");
 
@@ -348,8 +386,8 @@ function Home() {
     return (
       <div>
         {loading && <Loader setLoading={setLoading} loading={loading} />}
-        <div className="w-full px-2 ">
-          <div className="w-full overflow-x-auto xsm:bg-bg1 rounded-md flex items-center h-12">
+        <div className="w-full px-1">
+          {/* <div className="w-full overflow-x-auto xsm:bg-bg1 rounded-md flex items-center h-12">
             <div className="flex pt-1 h-full items-center hide-scrollbar whitespace-nowrap  gap-2">
               {gameCategoryTabs.map((tab, i) => (
                 <div
@@ -359,7 +397,7 @@ function Home() {
                 >
                   <button
                     // onMouseEnter={(e) => toggleHeaderModalList(i, e)}
-                    onClick={goToLivePage}
+                    onClick={()=>{goToLivePage(tab.route);}}
                     className={`relative px-4 flex items-center h-full gap-1 ${
                       isOpenHeaderModal === i
                         ? "border-t-[2px] bg-mainBg  border-bg4 text-white"
@@ -379,21 +417,20 @@ function Home() {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
-          <div className="rounded-xl xsm:px-3">
+          <div className="rounded-xl xsm:px-1">
             {bannerData?.length > 0 ? (
               <ImageCarousel
                 imagesData={bannerData}
                 height="h-[15vh] lg:h-[50vh] xl:h-[60vh]"
               />
             ) : (
-              <div className="text-white h-16 mt-8 w-full text-center">
-                No banner available
-              </div>
+              <SliderBar />
             )}
           </div>
-          <div className="w-full xsm:flex flex-wrap items-center gap-3 mt-2">
+          {/* cards game */}
+          {/* <div className="w-full xsm:flex flex-wrap items-center gap-3 mt-2">
             {cards.map((card) => (
               <div
                 key={card.id}
@@ -406,16 +443,16 @@ function Home() {
                 />
               </div>
             ))}
-          </div>
+          </div> */}
           {/* featured games */}
-          <div className="text-sm p-2">
-            <h1 className="font-semibold text-white">FEATURED GAMES</h1>
+          <div className="text-xsm p-2">
+            <h1 className="font-semibold text-textGray1">FEATURED GAMES</h1>
             <div className="h-28 text-xsm w-full flex items-center font- text-textGray1 justify-center">
               There are no featured games at the moment
             </div>
           </div>
-          {/* featured games */}
-          <div className="text-sm p-2">
+          {/* trending games */}
+          {/* <div className="text-xsm p-2">
             <h1 className="font-semibold text-white">TRENDING GAMES</h1>
             <div className="w-full xsm:flex flex-wrap items-center gap-2 mt-2">
               {gamesData.map((game, index) => (
@@ -445,20 +482,37 @@ function Home() {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
           {/* upcoming matches */}
           <div className="text-xsm p-2">
             <div className="">
               <div className="flex items-center justify-between">
-                <h1 className="font-semibold text-sm text-textGray1">
+                <h1 className="font-semibold text-xsm text-textGray1">
                   UPCOMING MATCHES
                 </h1>
-                <button className="text-textGray flex items-center">
+                <button className="text-hederColor2 flex items-center text-xsm">
                   More <MdKeyboardArrowRight size={25} />{" "}
                 </button>
               </div>
-              <div className="w-full flex items-center justify-between gap-2 mt-3">
-                <div className="xsm:flex items-center gap-2 w-full">
+              <div className="w-full md:flex items-center justify-between gap-2 mt-3">
+                <div className="flex gap-1 items-center hide-scrollbar whitespace-nowrap mb-2 md:hidden">
+                  {upcomingMatchesTabs.map((tab) => (
+                    <button
+                      key={tab.name}
+                      onClick={() => setActiveMatchesTab(tab.name)}
+                      className={`py-1.5 w-[100vw] rounded-md flex items-center justify-center ${
+                        activeMatchesTab !== tab.name
+                          ? "border-[0.1px] border-textGray text-textGray"
+                          : "text-bg2 bg-white"
+                      } text-xs transition`}
+                    >
+                      {tab.name}M
+                    </button>
+                  ))}
+                </div>
+
+                {/*  Match Icons */}
+                {/* <div className="xsm:flex items-center gap-2 w-full">
                   {upcomingMatchesData[activeMatchesTab].map((item, i) => (
                     <div
                       key={i}
@@ -472,7 +526,7 @@ function Home() {
                         activeSportTabs[activeMatchesTab] === i
                           ? getBgClass(item.bg)
                           : `bg-bg2 ${getTextColor(item.iconColor)}`
-                      } `}
+                      }`}
                     >
                       {item.icon}
                       {item.number && (
@@ -482,9 +536,11 @@ function Home() {
                       )}
                     </div>
                   ))}
-                </div>
+                </div> */}
+                <GameMenu maxItems={5} />
 
-                <div className="flex gap-1 items-center lg:justify-between hide-scrollbar whitespace-nowrap">
+                {/*  Upcoming tab - visible on md and up screens only (keeps original position) */}
+                <div className="hidden md:flex gap-1 items-center lg:justify-between hide-scrollbar whitespace-nowrap">
                   {upcomingMatchesTabs.map((tab) => (
                     <button
                       key={tab.name}
@@ -500,7 +556,8 @@ function Home() {
                   ))}
                 </div>
               </div>
-              <div className="flex flex-col mt-2">
+              {/* table */}
+              {/* <div className="flex flex-col mt-2">
                 <div className="flex w-full items-center my-2 rounded-md hide-scrollbar overflow-x-auto md:overflow-x-hidden">
                   <div className="flex items-center gap-[1px] w-full  ">
                     <div className="w-[150px] sm:w-[200px] py-[6px] bg-[#2E374B] text-xsm flex items-center justify-between gap-1 flex-shrink-0">
@@ -535,7 +592,7 @@ function Home() {
                       key={match.id}
                       className="group flex w-full items-center gap-[1px] rounded-md hide-scrollbar overflow-x-auto sm:overflow-x-hidden flex-shrink-0"
                     >
-                      {/* div1 started */}
+                
                       <div className="flex items-center w-full bg-[#222D42] group-hover:bg-[#565F6E]">
                         <div className="w-[150px] sm:w-[200px] px-2 py-2 text-xsm flex items-center gap-1 flex-shrink-0">
                           <MdOutlineTimer size={16} /> {match.date}
@@ -559,8 +616,7 @@ function Home() {
                           </div>
                         </div>
                       </div>
-                      {/* div1 ended */}
-                      {/* div2 started */}
+                
                       <div className="flex items-center gap-[1px] -mr-5 text-[#ffd700] text-xsm">
                         {[match.odds.w1, match.odds.x, match.odds.w2].map(
                           (odds, idx) => (
@@ -582,39 +638,70 @@ function Home() {
                           )
                         )}
                       </div>
-                      {/* div2 ended */}
+                   
                     </div>
                   ))}
                 </div>
-              </div>
+              </div> */}
+              <Table2></Table2>
             </div>
           </div>
-          {/* casino games */}
-          <div className="mb-20">
-            <h1 className="text-sm font-semibold text-white">CASINO GAMES</h1>
-            <div className="w-full flex flex-wrap items-center gap-3 mt-2">
-              <div className="relative 3xl:w-[19.5%] h-64 rounded-md overflow-hidden group cursor-pointer">
-                <img src={avi} className="w-full h-full object-cover" />
-
-                {/* overlay with blur */}
-                <div className="absolute inset-0 bg-black bg-opacity-30 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-
-                {/* star icon */}
-                <div className="absolute top-2 left-2 opacity-0 group-hover:opacity-100 transition-all duration-300 text-white">
-                  <IoStarOutline size={24} />
-                </div>
-                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300 text-white">
-                  <BsExclamationCircle size={24} />
-                </div>
-                <Link to="/aviator">
-                  <button className="absolute text-black py-1 px-2 rounded-[0.25rem] text-xsm bottom-2 left-[40%] opacity-0 group-hover:opacity-100 transition-all duration-300 bg-bg4">
-                    PLAY
-                  </button>
-                </Link>
-              </div>
+          {/*casino games */}
+          <div className="mb-1">
+            <div className="flex items-center justify-between">
+              <h1 className="font-semibold text-xsm text-textGray1 uppercase">
+                Casino Games
+              </h1>
+              <button
+                className="text-hederColor2 flex items-center text-xsm"
+                onClick={() => navigate("/")}
+              >
+                More <MdKeyboardArrowRight size={25} />{" "}
+              </button>
+            </div>
+            <div className="w-full flex flex-wrap items-center gap-3 mt-0">
+              <GameGallery
+                maxItems={4}
+                className={isHome ? "grid-cols-2" : "grid-cols-1"}
+              />
             </div>
           </div>
-          <div className="flex items-center justify-end gap-2 px-28">
+          {/* Live casino games */}
+          <div className="mb-1">
+            <div className="flex items-center justify-between">
+              <h1 className="font-semibold text-xsm text-textGray1 uppercase">
+                Live casino Games
+              </h1>
+              <button
+                className="text-hederColor2 flex items-center text-xsm"
+                onClick={() => navigate("/livecasino")}
+              >
+                More <MdKeyboardArrowRight size={25} />{" "}
+              </button>
+            </div>
+
+            <div className="w-full flex flex-wrap items-center gap-3 mt-0">
+              <GameGallery maxItems={3} />
+            </div>
+          </div>
+          {/* games */}
+          <div className="mb-1">
+            <div className="flex items-center justify-between">
+              <h1 className="font-semibold text-xsm text-textGray1 uppercase">
+                Games
+              </h1>
+              <button
+                className="text-hederColor2 flex items-center text-xsm"
+                onClick={() => navigate("/gamepage")}
+              >
+                More <MdKeyboardArrowRight size={25} />{" "}
+              </button>
+            </div>
+            <div className="w-full flex flex-wrap items-center gap-3 mt-0">
+              <AllGames maxItems={2} />
+            </div>
+          </div>
+          {/* <div className="flex items-center justify-end gap-2 px-28">
             <div className="flex justify-center items-center text-nowrap text-white rounded-md text-xs w-16 mr-4 py-1.5 bg-bg2">
               <IndianTime />
             </div>
@@ -633,7 +720,7 @@ function Home() {
               </div>
             </button>
             {isLanguageOpen && <LanguageModal />}
-          </div>
+          </div> */}
         </div>
         {isOpenHeaderModal !== null && (
           <div

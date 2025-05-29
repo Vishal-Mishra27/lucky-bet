@@ -14,6 +14,7 @@ import LanguageModal from "./Modal/LanguageModal";
 import NotificationModal from "./Modal/NotificationModal";
 import useProfile from "../services/gameApi";
 import DepositModal from "../pages/Wallet/depositModal/DepositModal";
+import { useNavigate } from "react-router-dom";
 
 const languages = [
   { name: "UAE", flag: "uaeFlag.webp" },
@@ -23,6 +24,8 @@ const languages = [
 function Header({ audioRef, isAudioOn, setIsAudioOn }) {
   const location = useLocation();
   const userId = localStorage.getItem("userId");
+  const navigate = useNavigate();
+  
 
   const [toggleEye, setToggleEye] = useState(true);
   const [notificationModal, setNotificationModal] = useState(false);
@@ -88,9 +91,9 @@ function Header({ audioRef, isAudioOn, setIsAudioOn }) {
         />
       )}
 
-      {location?.pathname === "/" && (
+     
         <div className="bg-mainBg px-2 h-14 flex justify-between items-center">
-          <img className="h-6" src={usawinlogo} alt="logo not found" />
+          <img className="h-6" src={usawinlogo} alt="logo not found" onClick={()=>navigate('/')} />
           {!userId ? (
             <div className="flex items-center gap-0.5">
               <button
@@ -178,7 +181,7 @@ function Header({ audioRef, isAudioOn, setIsAudioOn }) {
             </div>
           )}
         </div>
-      )}
+      
     </div>
   );
 }

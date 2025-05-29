@@ -40,12 +40,12 @@ body {
   flex-direction: row;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 10px 20px;
-  gap: 15px;
+  padding: 3px 1px;
+  /* gap: 15px; */
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  box-shadow: -15px 0 20px -10px black, 15px 0 20px -10px black;
+  /* box-shadow: -15px 0 20px -10px black, 15px 0 20px -10px black; */
 }
 
 .game-menu-container::-webkit-scrollbar {
@@ -188,7 +188,7 @@ body {
   overflow-x: auto;
   scroll-behavior: smooth;
   position: relative;
-  box-shadow: -15px 0 20px -10px black, 15px 0 20px -10px black;
+  /* box-shadow: -15px 0 20px -10px black, 15px 0 20px -10px black; */
 }
 
 .game-item1 {

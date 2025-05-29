@@ -101,6 +101,12 @@
   }
 }
 
+@media (min-width:769px){
+  .search-button{
+    padding: 17px;
+  }
+}
+
 /* ------------------------------------------ */
 
 /* .search-container {

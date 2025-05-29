@@ -218,7 +218,7 @@ useEffect(() => {
             {/* Sport Dropdown with Search and Modal Style */}
             <div className="bg-headerBg">
               <div className="w-100 m-2">
-                <div className="relative w-50 bg-headerbg3 rounded-[6px] mt-2 h-[7vh] lg:h-[4vh] md2:h-[6vh]">
+                <div className="relative w-50 bg-headerbg3 rounded-[6px] mt-2 h-[7vh] lg:h-[8vh] md2:h-[6vh] xs3:h-[5vh] md:h-[4vh] xl:h-[6vh]">
                   <label className="text-xsm block pt-1 pl-2 text-hederColor2">
                     Sport
                   </label>
@@ -256,8 +256,9 @@ useEffect(() => {
                         {isSportOpen && (
                           <div
                             className="fixed inset-0 z-50 flex justify-center items-center backdrop-blur-sm bg-black bg-opacity-40 transition duration-300"
-                            onClick={() => {setIsSportOpen(false); }} // Clicking outside closes modal
-                            
+                            onClick={() => {
+                              setIsSportOpen(false);
+                            }} // Clicking outside closes modal
                           >
                             <div
                               className="relative mt-[10vh] w-full bg-[#0c1327] rounded-lg shadow-lg max-h-[80vh] overflow-auto z-50 md2:w-[50%] lg:mt-[10vh] xs3:w-[80%] xs3:mt-[10vh]"
@@ -265,7 +266,12 @@ useEffect(() => {
                             >
                               {/* Close Button */}
                               <div className="sticky top-0 z-20 flex justify-end bg-[#0c1327] rounded-t-lg p-2">
-                                <button onClick={() => {setIsSportOpen(false); setSportQuery('')}}>
+                                <button
+                                  onClick={() => {
+                                    setIsSportOpen(false);
+                                    setSportQuery("");
+                                  }}
+                                >
                                   <X className="w-5 h-5 lg:h-10 lg:w-10 text-gray hover:text-white" />
                                 </button>
                               </div>
@@ -329,7 +335,7 @@ useEffect(() => {
             {/* Competition Dropdown */}
             <div className="bg-headerBg">
               <div className="w-100 m-2">
-                <div className="relative w-50 bg-headerbg3 rounded-[6px] mt-2 h-[7vh] lg:h-[4vh] md2:h-[6vh]">
+                <div className="relative w-50 bg-headerbg3 rounded-[6px] mt-2 h-[7vh] lg:h-[8vh] md2:h-[6vh] xs3:h-[5vh] md:h-[4vh] xl:h-[6vh]">
                   <label className="text-xsm block pt-1 pl-2 text-hederColor2">
                     Competition
                   </label>

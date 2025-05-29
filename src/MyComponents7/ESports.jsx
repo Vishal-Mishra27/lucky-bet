@@ -9,20 +9,7 @@ import MarketGameCard from "./BettingCard";
 export default function ESports() {
   return (
     <div className="bg-[#0B1120]  text-hederColor3">
-      {/* Filters and Search */}
-      <div className="p-2 space-y-4">
-        <div className="flex justify-start">
-          <TimeFilterDropdown />
-        </div>
-        <div>
-          <SearchBar />
-        </div>
-      </div>
 
-      {/* Full-width Tabs */}
-      <div className="w-full">
-        <HeaderTabs />
-      </div>
       <div className="w-full">
         <SlideEsport />
       </div>

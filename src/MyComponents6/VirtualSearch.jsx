@@ -17,7 +17,7 @@ export default function GameSearch() {
   };
 
   return (
-    <div className="flex flex-wrap items-center justify-between p-2 w-full gap-2">
+    <div className="flex flex-wrap items-center justify-between p-2 w-full gap-2 lg:hidden">
       {/* Filter Button - Only show when search is fully closed */}
       {showGamesText && (
         <button className="flex items-center gap-2 px-0 py-2 text-hederColor2 text-sm font-bold uppercase transition-all duration-3000">
@@ -63,7 +63,7 @@ export default function GameSearch() {
           {/* Toggle Button */}
           <button
             onClick={toggleSearch}
-            className="p-2 border border-borderColor hover:bg-[#1a1f2e] rounded-lg"
+            className="p-2 border border-borderColor hover:bg-[#1a1f2e] rounded-lg lg:hidden"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

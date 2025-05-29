@@ -52,6 +52,18 @@
     max-height: 73vh;
   }
   
+  @media (min-width: 430px) and (max-width: 1439px) {
+    .dropdown-menu{
+      width: 98%;
+    }
+  }
+  @media (min-width: 1440px) {
+    .dropdown-menu{
+      width: 99.2%;
+    }
+  }
+
+
   .dropdown-sticky-header {
     position: sticky;
     top: 0;

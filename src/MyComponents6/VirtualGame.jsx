@@ -48,7 +48,7 @@ const VirtualGame = () => {
         {images.map((img, index) => (
           <div
             key={index}
-            className="relative rounded-[10px] overflow-hidden shadow-lg cursor-pointer aspect-[4/3]"
+            className={`relative rounded-[10px] overflow-hidden shadow-lg cursor-pointer aspect-[4/3]`}
             onClick={() => handleClick(index)}
           >
             <img

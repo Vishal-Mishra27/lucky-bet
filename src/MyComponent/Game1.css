@@ -41,11 +41,11 @@ body {
   overflow-x: auto;
   overflow-y: hidden;
   padding: 10px 20px;
-  gap: 15px;
+  /* gap: 15px; */
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  box-shadow: -15px 0 20px -10px black, 15px 0 20px -10px black;
+  /* box-shadow: -15px 0 20px -10px black, 15px 0 20px -10px black; */
 }
 
 .game-menu-container::-webkit-scrollbar {
@@ -68,13 +68,22 @@ body {
   display: flex;
 }
 
+@media (min-width: 800px) {
+  .game-item{
+    height: 75px;
+  }
+  .game-menu-container{
+    gap: 1px;
+  }
+}
+
 .game-item-content-wrapper {
   width: 100%;
-  min-height: calc(var(--game-item-min-width) * var(--game-item-base-height-ratio));
+  /* min-height: calc(var(--game-item-min-width) * var(--game-item-base-height-ratio)); */
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   text-align: center;
   background-size: cover;
@@ -182,12 +191,21 @@ body {
   .game-name { font-size: 0.9rem; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 766px) {
   :root {
     --game-item-min-width: 100px;
     --game-item-max-width: 180px;
   }
   .game-menu-container { padding: 10px 10px; gap: 0px; }
+  .game-icon { font-size: 1.6rem; }
+  .game-name { font-size: 10px; line-height: 12px; }
+}
+@media (min-width: 767px) {
+  :root {
+    --game-item-min-width: 100px;
+    --game-item-max-width: 180px;
+  }
+  .game-menu-container { padding: 2px 2px; gap: 0px; }
   .game-icon { font-size: 1.6rem; }
   .game-name { font-size: 10px; line-height: 12px; }
 }
@@ -207,7 +225,7 @@ body {
   overflow-x: auto;
   scroll-behavior: smooth;
   position: relative;
-  box-shadow: -15px 0 20px -10px black, 15px 0 20px -10px black;
+  /* box-shadow: -15px 0 20px -10px black, 15px 0 20px -10px black; */
 }
 
 .game-item {

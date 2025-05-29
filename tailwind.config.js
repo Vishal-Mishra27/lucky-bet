@@ -19,6 +19,7 @@ export default {
       x7: '1063px',    // 7 images
       x8: '1248px',    // 8 images
       x9: '1359px', // upper bound for 8 images
+      
       // ----
       lg: "1024px",
       xl: "1280px",

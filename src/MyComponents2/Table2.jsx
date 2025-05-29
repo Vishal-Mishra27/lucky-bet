@@ -328,7 +328,7 @@ export default function Table2() {
             </ul>
           )}
         </div>
-        <div className="h-[15px] bg-black w-[1px] m-0 border-t border-b border-[#111]"></div>
+        <div className="h-[15px] bg-mainBg w-[1px] m-0 border-t border-b border-mainBg"></div>
         <div className="flex items-center justify-between w-1/2 border border-black px-[5px] py-[1px]">
           {selectedMarket.headers.map((header) => (
             <span key={header} className="column-header-item">
@@ -405,7 +405,7 @@ export default function Table2() {
                             alt={`${league.country} flag`}
                             className="w-5 h-3 object-cover rounded-sm"
                           />
-                          <div className="h-[15px] bg-black w-[1px] m-0 border-t border-b border-[#111]"></div>
+                          <div className="h-[15px] bg-mainBg w-[1px] m-0 border-t border-b border-[#111]"></div>
                           {match.isLocked ? (
                             <FontAwesomeIcon
                               icon={faLock}
@@ -422,7 +422,7 @@ export default function Table2() {
                   </div>
                 ))}
               </div>
-              <div className="h-[5px] bg-black w-full m-0 border-t border-b border-[#111]"></div>
+              <div className="h-[5px] bg-mainBg w-full m-0 border-t border-b border-[#111]"></div>
             </div>
             // </div>
           );
