@@ -329,7 +329,7 @@ export default function Table2() {
           )}
         </div>
         <div className="h-[15px] bg-black w-[1px] m-0 border-t border-b border-[#111]"></div>
-        <div className="flex items-center justify-between w-1/2 border border-black px-[5px] py-[1px]">
+        <div className="flex items-center justify-around w-1/2 border border-black px-[5px] py-[1px]">
           {selectedMarket.headers.map((header) => (
             <span key={header} className="column-header-item">
               {header}

@@ -32,6 +32,8 @@ import ProviderSearch from "./ProviderSearch";
 import ProviderToggle from "./ProviderToggle";
 import GameSearchBarlg from "./GameSearchBarlg";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Footer from "../components/Footer";
+
 
 export default function VirtualSports() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -61,7 +63,10 @@ export default function VirtualSports() {
         <div className="flex items-center justify-between text-white uppercase text-sm font-semibold px-8 py-2">
           <div className="flex items-center space-x-4">
             {/* <ChevronLeft size={16} /> */}
-            <span onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="hover:pointer">
+            <span
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              className="hover:pointer"
+            >
               Providers
             </span>
           </div>
@@ -86,6 +91,7 @@ export default function VirtualSports() {
         <GameSearchBarlg />
         <VirtualSearch />
         <VirtualGame />
+        <Footer />
       </div>
     </div>
   );

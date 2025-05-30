@@ -74,7 +74,7 @@ const Layout = () => {
                   <Footer />
                 </div>
               </div>
-              <div className="h-[3.5rem] bg-[#041027] flex items-center lg:hidden w-full z-50 relative bottom-0">
+              <div className="h-[3.5rem] bg-[#041027] flex items-center  w-full z-50 relative bottom-0">
                 <MobileFooter onOpenModal={setActiveModal} />
               </div>
             </div>

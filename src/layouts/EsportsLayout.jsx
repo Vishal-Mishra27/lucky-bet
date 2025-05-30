@@ -15,6 +15,8 @@ import { Outlet, useLocation } from "react-router-dom";
 import HeaderTabs from "../MyComponents7/HeaderTabs"; // adjust path
 import SearchBar from "../MyComponents7/SearchBar"; // adjust path
 import TimeFilterDropdown from "../MyComponents7/TimeFilterDropdown"; // adjust path
+import Footer from "../components/Footer";
+
 
 export default function EsportsLayout() {
   const location = useLocation();
@@ -33,6 +35,7 @@ export default function EsportsLayout() {
       </div>
       <HeaderTabs />
       <Outlet />
+      <Footer />
     </div>
   );
 }

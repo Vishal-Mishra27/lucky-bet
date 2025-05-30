@@ -557,7 +557,7 @@ function Home() {
                 </div>
               </div>
               {/* table */}
-              {/* <div className="flex flex-col mt-2">
+              <div className="flex flex-col mt-2">
                 <div className="flex w-full items-center my-2 rounded-md hide-scrollbar overflow-x-auto md:overflow-x-hidden">
                   <div className="flex items-center gap-[1px] w-full  ">
                     <div className="w-[150px] sm:w-[200px] py-[6px] bg-[#2E374B] text-xsm flex items-center justify-between gap-1 flex-shrink-0">
@@ -642,8 +642,8 @@ function Home() {
                     </div>
                   ))}
                 </div>
-              </div> */}
-              <Table2></Table2>
+              </div>
+              {/* <Table2></Table2> */}
             </div>
           </div>
           {/*casino games */}
@@ -698,7 +698,7 @@ function Home() {
               </button>
             </div>
             <div className="w-full flex flex-wrap items-center gap-3 mt-0">
-              <AllGames maxItems={2} />
+              <AllGames maxItems={2} isHome={isHome}/>
             </div>
           </div>
           {/* <div className="flex items-center justify-end gap-2 px-28">

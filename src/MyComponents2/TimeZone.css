@@ -71,7 +71,7 @@ body {
 
 .game-item-content-wrapper {
   width: 100%;
-  min-height: calc(var(--game-item-min-width) * var(--game-item-base-height-ratio));
+  /* min-height: calc(var(--game-item-min-width) * var(--game-item-base-height-ratio)); */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -169,7 +169,7 @@ body {
     --game-item-max-width: 180px;
   }
   .game-menu-container { padding: 10px 10px; gap: 0px; }
-  .game-icon { font-size: 1.6rem; }
+  .game-icon { font-size: 30px; }
   .game-name { font-size: 10px; line-height: 12px; }
 }
 

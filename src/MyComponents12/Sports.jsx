@@ -10,16 +10,20 @@ import { MdOutlineWatchLater } from "react-icons/md";
 import SearchOption from "../MyComponents13/casinoComponents/SearchOption";
 import Winner from "./Winner";
 import { IoTrophy } from "react-icons/io5";
+import Login from "../../src/features/auth/Login"
 
 
 
 const Sports = () => {
 
   const [activeTab, setActiveTab] = useState(null);
+  const [isOpenLogin, setIsOpenLogin] = useState(false);
+
 
 
   return (
     <div className="">
+      {isOpenLogin && <Login setIsOpenLogin={setIsOpenLogin} />}
       <div className="mt-[10px] p-[7px]">
         <h3 className="text-[#ffffff] mb-[5px] text-[15px] leading-[16px] font-[400] uppercase">
           My Teams
@@ -86,7 +90,10 @@ const Sports = () => {
               className="relative w-[46px] h-[46px] rounded-[50%] flex justify-center items-center bg-[#000b23] 
                       border border-[#3c455a] overflow-hidden z-0"
             >
-              <FaPlus className="text-[#ffffff] text-[12px]" />
+              <FaPlus
+                className="text-[#ffffff] text-[12px]"
+                onClick={() => setIsOpenLogin(true)}
+              />
             </div>
           </div>
         </div>

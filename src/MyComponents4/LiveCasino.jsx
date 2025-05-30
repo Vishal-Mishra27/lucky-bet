@@ -24,6 +24,7 @@ import SliderBar from './SliderBar'
 import GameGallery from './GameGallery'
 import FilterOption from './FilterOption'
 import Loader from "../reusableComponents/Loader/Loader";
+import Footer from  "../components/Footer"
 
 
 
@@ -59,7 +60,7 @@ export default function Casino() {
       {loading && <Loader setLoading={setLoading} loading={loading} />}
 
       <SliderBar />
-      <div className="w-full min-h-screen bg-[#07122C] flex flex-col lg:flex-row">
+      <div className="w-full  bg-[#07122C] flex flex-col lg:flex-row">
         {/* Sidebar Section for lg+ */}
         <div
           className={`hidden lg:flex flex-col transition-all duration-300 ${
@@ -109,6 +110,7 @@ export default function Casino() {
           <LiveCasinoGameSearchBarlg />
           <FilterOption />
           <GameGallery />
+          <Footer></Footer>
         </div>
       </div>
     </div>
