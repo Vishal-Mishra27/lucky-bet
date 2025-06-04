@@ -156,7 +156,7 @@ function Footer() {
     <footer className="text-[#9aa4af] text-sm font-poppins relative">
       {/* Language Selector */}
       <div className="border-t border-white/10 my-6" />
-      <div className="flex justify-end px-4 sm:px-10 pt-0 relative">
+      {/* <div className="flex justify-end px-4 sm:px-10 pt-0 relative">
         <div
           className="flex items-center gap-2 bg-[#121d38] border border-white/10 px-3 py-1 rounded-md text-white text-[14px] cursor-pointer relative"
           onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -187,10 +187,10 @@ function Footer() {
             ))}
           </div>
         )}
-      </div>
+      </div> */}
 
       {/* Divider */}
-      <div className="border-t border-white/10 my-6 mx-4 sm:mx-10" />
+      {/* <div className="border-t border-white/10 my-6 mx-4 sm:mx-10" /> */}
 
       {/* Footer Sections */}
       <div className="text-center space-y-6">

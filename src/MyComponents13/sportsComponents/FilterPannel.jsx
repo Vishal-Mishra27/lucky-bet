@@ -172,8 +172,10 @@ const [isSportOpen, setIsSportOpen] = useState(false);
 const [competitionQuery, setCompetitionQuery] = useState("");
 const [isCompetitionOpen, setIsCompetitionOpen] = useState(false);
 
-const filteredCompetitions = competitions.filter((comp) =>
-  comp.toLowerCase().includes(competitionQuery.toLowerCase())
+const filteredCompetitions = competitions.filter(
+  (comp) =>
+    typeof comp === "string" &&
+    comp.toLowerCase().includes(competitionQuery.toLowerCase())
 );
 
 const sportDropdownRef = useRef(null);
