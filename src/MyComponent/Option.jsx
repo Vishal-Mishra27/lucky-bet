@@ -9,8 +9,13 @@ import {
   faSearch,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
+import "../i18";
 
 export default function Option() {
+   const { t, i18n } = useTranslation();
+      const { Context3 } = t("Context");
+
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
 
@@ -37,10 +42,10 @@ export default function Option() {
           <div className={`search-wrapper ${isSearchOpen ? "show" : "hide"}`}>
             <input
               type="text"
-              className="search-input"
+              className="search-input !bg-mainBg"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search for a competition or team"
+              placeholder={Context3}
             />
           </div>
 

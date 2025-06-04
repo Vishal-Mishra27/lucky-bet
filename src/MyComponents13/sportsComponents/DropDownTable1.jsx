@@ -1,162 +1,180 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import "../../i18";
 
-const matchData = [
-  {
-    league: "1. Deild (Iceland)",
-    logo: "🌐", // Replace with image if available
-    matches: [
-      {
-        home: "HK Kopavogur",
-        away: "UMF Njardvik",
-        score: "1 - 3",
-        halftime: "1:3 (1:1)",
-        date: "24.05.2025",
-        time: "00:45",
-      },
-      {
-        home: "Keflavik",
-        away: "Leiknir Reykjavik",
-        score: "6 - 0",
-        halftime: "6:0 (2:0)",
-        date: "24.05.2025",
-        time: "00:45",
-      },
-      {
-        home: "IR Reykjavik",
-        away: "UMF Selfoss",
-        score: "2 - 0",
-        halftime: "2:0 (0:0)",
-        date: "24.05.2025",
-        time: "00:45",
-      },
-      {
-        home: "Fylkir Reykjavik",
-        away: "Throttur Reykjavik",
-        score: "1 - 2",
-        halftime: "1:2 (0:1)",
-        date: "24.05.2025",
-        time: "00:45",
-      },
-    ],
-  },
-  {
-    league: "2. Bundesliga (Germany)",
-    logo: "🇩🇪",
-    matches: [
-      {
-        home: "HK Kopavogur",
-        away: "UMF Njardvik",
-        score: "1 - 3",
-        halftime: "1:3 (1:1)",
-        date: "24.05.2025",
-        time: "00:45",
-      },
-      {
-        home: "Keflavik",
-        away: "Leiknir Reykjavik",
-        score: "6 - 0",
-        halftime: "6:0 (2:0)",
-        date: "24.05.2025",
-        time: "00:45",
-      },
-      {
-        home: "IR Reykjavik",
-        away: "UMF Selfoss",
-        score: "2 - 0",
-        halftime: "2:0 (0:0)",
-        date: "24.05.2025",
-        time: "00:45",
-      },
-      {
-        home: "Fylkir Reykjavik",
-        away: "Throttur Reykjavik",
-        score: "1 - 2",
-        halftime: "1:2 (0:1)",
-        date: "24.05.2025",
-        time: "00:45",
-      },
-    ],
-  },
-  {
-    league: "3. Deild (Iceland)",
-    logo: "🌐", // Replace with image if available
-    matches: [
-      {
-        home: "HK Kopavogur",
-        away: "UMF Njardvik",
-        score: "1 - 3",
-        halftime: "1:3 (1:1)",
-        date: "24.05.2025",
-        time: "00:45",
-      },
-      {
-        home: "Keflavik",
-        away: "Leiknir Reykjavik",
-        score: "6 - 0",
-        halftime: "6:0 (2:0)",
-        date: "24.05.2025",
-        time: "00:45",
-      },
-      {
-        home: "IR Reykjavik",
-        away: "UMF Selfoss",
-        score: "2 - 0",
-        halftime: "2:0 (0:0)",
-        date: "24.05.2025",
-        time: "00:45",
-      },
-      {
-        home: "Fylkir Reykjavik",
-        away: "Throttur Reykjavik",
-        score: "1 - 2",
-        halftime: "1:2 (0:1)",
-        date: "24.05.2025",
-        time: "00:45",
-      },
-    ],
-  },
-  {
-    league: "4. Deild (Iceland)",
-    logo: "🌐", // Replace with image if available
-    matches: [
-      {
-        home: "HK Kopavogur",
-        away: "UMF Njardvik",
-        score: "1 - 3",
-        halftime: "1:3 (1:1)",
-        date: "24.05.2025",
-        time: "00:45",
-      },
-      {
-        home: "Keflavik",
-        away: "Leiknir Reykjavik",
-        score: "6 - 0",
-        halftime: "6:0 (2:0)",
-        date: "24.05.2025",
-        time: "00:45",
-      },
-      {
-        home: "IR Reykjavik",
-        away: "UMF Selfoss",
-        score: "2 - 0",
-        halftime: "2:0 (0:0)",
-        date: "24.05.2025",
-        time: "00:45",
-      },
-      {
-        home: "Fylkir Reykjavik",
-        away: "Throttur Reykjavik",
-        score: "1 - 2",
-        halftime: "1:2 (0:1)",
-        date: "24.05.2025",
-        time: "00:45",
-      },
-    ],
-  },
-];
+
 
 export default function LeagueMatches() {
+        const { t, i18n } = useTranslation();
+
+        const {
+          DeildIceland,
+          HKKopavogur,
+          UMFNjardvik,
+          Keflavik,
+          LeiknirReykjavik,
+          FylkirReykjavik,
+          ThrotturReykjavik,
+          BundesligaGermany,
+          IRReykjavik,
+          UMFSelfoss,
+          View,
+        } = t("ResultTable");
+        const matchData = [
+          {
+            league: DeildIceland,
+            logo: "🌐", // Replace with image if available
+            matches: [
+              {
+                home: HKKopavogur,
+                away: UMFNjardvik,
+                score: "1 - 3",
+                halftime: "1:3 (1:1)",
+                date: "24.05.2025",
+                time: "00:45",
+              },
+              {
+                home: Keflavik,
+                away: LeiknirReykjavik,
+                score: "6 - 0",
+                halftime: "6:0 (2:0)",
+                date: "24.05.2025",
+                time: "00:45",
+              },
+              {
+                home: IRReykjavik,
+                away: UMFSelfoss,
+                score: "2 - 0",
+                halftime: "2:0 (0:0)",
+                date: "24.05.2025",
+                time: "00:45",
+              },
+              {
+                home: FylkirReykjavik,
+                away: ThrotturReykjavik,
+                score: "1 - 2",
+                halftime: "1:2 (0:1)",
+                date: "24.05.2025",
+                time: "00:45",
+              },
+            ],
+          },
+          {
+            league: BundesligaGermany,
+            logo: "🇩🇪",
+            matches: [
+              {
+                home: HKKopavogur,
+                away: UMFNjardvik,
+                score: "1 - 3",
+                halftime: "1:3 (1:1)",
+                date: "24.05.2025",
+                time: "00:45",
+              },
+              {
+                home: Keflavik,
+                away: LeiknirReykjavik,
+                score: "6 - 0",
+                halftime: "6:0 (2:0)",
+                date: "24.05.2025",
+                time: "00:45",
+              },
+              {
+                home: IRReykjavik,
+                away: UMFSelfoss,
+                score: "2 - 0",
+                halftime: "2:0 (0:0)",
+                date: "24.05.2025",
+                time: "00:45",
+              },
+              {
+                home: FylkirReykjavik,
+                away: ThrotturReykjavik,
+                score: "1 - 2",
+                halftime: "1:2 (0:1)",
+                date: "24.05.2025",
+                time: "00:45",
+              },
+            ],
+          },
+          {
+            league: DeildIceland,
+            logo: "🌐", // Replace with image if available
+            matches: [
+              {
+                home: HKKopavogur,
+                away: UMFNjardvik,
+                score: "1 - 3",
+                halftime: "1:3 (1:1)",
+                date: "24.05.2025",
+                time: "00:45",
+              },
+              {
+                home: Keflavik,
+                away: LeiknirReykjavik,
+                score: "6 - 0",
+                halftime: "6:0 (2:0)",
+                date: "24.05.2025",
+                time: "00:45",
+              },
+              {
+                home: IRReykjavik,
+                away: UMFSelfoss,
+                score: "2 - 0",
+                halftime: "2:0 (0:0)",
+                date: "24.05.2025",
+                time: "00:45",
+              },
+              {
+                home: FylkirReykjavik,
+                away: ThrotturReykjavik,
+                score: "1 - 2",
+                halftime: "1:2 (0:1)",
+                date: "24.05.2025",
+                time: "00:45",
+              },
+            ],
+          },
+          {
+            league: BundesligaGermany,
+            logo: "🇩🇪",
+            matches: [
+              {
+                home: HKKopavogur,
+                away: UMFNjardvik,
+                score: "1 - 3",
+                halftime: "1:3 (1:1)",
+                date: "24.05.2025",
+                time: "00:45",
+              },
+              {
+                home: Keflavik,
+                away: LeiknirReykjavik,
+                score: "6 - 0",
+                halftime: "6:0 (2:0)",
+                date: "24.05.2025",
+                time: "00:45",
+              },
+              {
+                home: IRReykjavik,
+                away: UMFSelfoss,
+                score: "2 - 0",
+                halftime: "2:0 (0:0)",
+                date: "24.05.2025",
+                time: "00:45",
+              },
+              {
+                home: FylkirReykjavik,
+                away: ThrotturReykjavik,
+                score: "1 - 2",
+                halftime: "1:2 (0:1)",
+                date: "24.05.2025",
+                time: "00:45",
+              },
+            ],
+          },
+        ];
   const [openLeague, setOpenLeague] = useState(null);
 
   return (
@@ -233,7 +251,7 @@ export default function LeagueMatches() {
                       <span className="ml-0">{match.time}</span>
                     </div>
                     <button className="flex items-center gap-1 text-hederColor3 font-[12px] hover:underline">
-                      VIEW
+                      {View}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-4 w-4"

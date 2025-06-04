@@ -101,8 +101,14 @@
 // }
 
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import "../i18";
 
 export default function GameSearch() {
+  const { t, i18n } = useTranslation();
+  const { Context7 } = t("Context");
+  const { Games } = t("Heading");
+  
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [showGamesText, setShowGamesText] = useState(true);
@@ -110,6 +116,7 @@ export default function GameSearch() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const toggleSearch = () => {
+
     if (isSearchOpen) {
       // Delay showing "Games" until after transition
       setTimeout(() => setShowGamesText(true), 1000);
@@ -146,7 +153,7 @@ export default function GameSearch() {
                 d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 103 10.5a7.5 7.5 0 0013.65 6.15z"
               />
             </svg>
-            <span>Games</span>
+            <span>{Games}</span>
           </button>
         )}
 
@@ -158,10 +165,10 @@ export default function GameSearch() {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search casino game"
+              placeholder={Context7}
               className={`transition-all duration-[1000ms] ease-in-out bg-headerBgSelected2 border border-none hover:border-borderColor rounded-lg text-white text-xsm ${
                 isSearchOpen
-                  ? "w-[80vw] opacity-100 p-2"
+                  ? "xsm:w-[92vw] opacity-100 p-2 xs5:w-[80vw] x6:w-[84vw] xs3:w-[86vw]"
                   : "w-0 opacity-0 overflow-hidden"
               }`}
               style={{ transitionProperty: "width, opacity" }}
@@ -213,13 +220,13 @@ export default function GameSearch() {
           <div className="w-full mt-[-24px] flex items-center   rounded  px-0 py-0 justify-start relative overflow-hidden">
             <div
               className="w-80 flex bg-mainBg px-2 py-1 border border-borderColor rounded transition-all duration-[1000ms]"
-            //   className={`absolute right-0 top-0 h-full bg-headerBgSelected2 transition-all duration-1000 ease-in-out
-            //   ${
-            //     showSearch
-            //       ? "translate-x-0 opacity-100 w-[80%]"
-            //       : "translate-x-full opacity-0 w-[80%]"
-            //   }
-            // `}
+              //   className={`absolute right-0 top-0 h-full bg-headerBgSelected2 transition-all duration-1000 ease-in-out
+              //   ${
+              //     showSearch
+              //       ? "translate-x-0 opacity-100 w-[80%]"
+              //       : "translate-x-full opacity-0 w-[80%]"
+              //   }
+              // `}
             >
               <button
                 onClick={() => setShowSearch(false)}
@@ -231,7 +238,7 @@ export default function GameSearch() {
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search casino game"
+                placeholder={Context8}
                 className="bg-transparent focus:outline-none text-white placeholder-gray-400 w-full "
               />
             </div>

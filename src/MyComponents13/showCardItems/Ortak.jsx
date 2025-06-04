@@ -2,10 +2,15 @@ import React from 'react'
 import CasinoGameIcon1 from "../../assets/casinoImages/casinoImages/casinoGameIcon1.gif";
 import CasinoGameIcon3 from "../../assets/casinoImages/casinoImages/casinoGameIcon3.gif";
 import CasinoGameIcon2 from "../../assets/casinoImages/casinoImages/casinoGameIcon2.webp";
+import { useTranslation } from "react-i18next";
+
 
 
 const Ortak = () => {
 
+      const { t, i18n } = useTranslation();
+      const { Ortak, All } = t("Casino");
+  
         const gameIcons = [
             CasinoGameIcon1,
             CasinoGameIcon2,
@@ -25,10 +30,10 @@ const Ortak = () => {
               <div className="flex items-center px-2">
                 <h2 className="text-[16px] text-white">O</h2>
                 <h2 className="ms-[7px] text-[16px] leading-[20px] pe-[10px] overflow-hidden whitespace-nowrap text-ellipsis">
-                  Ortak
+                  {Ortak}
                 </h2>
               </div>
-              <a href="#" className="text-white/50 text-[14px]">All (+11)</a>
+              <a href="#" className="text-white/50 text-[14px]">{All} (+11)</a>
             </div>
 
             {/* Game Icons Grid */}

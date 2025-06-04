@@ -17,198 +17,20 @@ import {
   faTableTennisPaddleBall,
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
+import { getGameMenuItems } from "../../MyComponent/Data";
+
 export default function GameSlider() {
-  const gameMenuItems = [
-    /* same game item array as before */
-    {
-      id: "1",
-      name: "All Games",
-      image: "/images/football-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "2",
-      name: "Ortak",
-      image: "/images/basketball-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "3",
-      name: "B.F.T.H. Arena",
-      image: "/images/tennis-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "4",
-      name: "New",
-      image: "/images/volleyball-banner.jpg",
-      selectedColor: "#4795b1",
-     
-    },
-    {
-      id: "5",
-      name: "Popular Games",
-      image: "/images/icehockey-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "6",
-      name: "New Year",
-      image: "/images/baseball-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "7",
-      name: "Top Slots",
-      image: "/images/tabletennis-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "8",
-      name: "Betting Games",
-      image: "/images/badminton-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "9",
-      name: "Video Slots",
-      image: "/images/cricket-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "10",
-      name: "Jackpots",
-      image: "/images/darts-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "11",
-      name: "Table Games",
-      image: "/images/cs2-banner.jpg",
-      selectedColor: "#4795b1",
-     
-    },
-    {
-      id: "12",
-      name: "Table Games",
-      image: "/images/dota2-banner.jpg",
-      selectedColor: "#4795b1",
-  
-    },
-    {
-      id: "13",
-      name: "Scratch Games",
-      image: "/images/lol-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "14",
-      name: "Arcade Games",
-      image: "/images/kog-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "15",
-      name: "Video Poker",
-      image: "/images/efootball-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "16",
-      name: "Mini Games",
-      image: "/images/efootball-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "17",
-      name: "Crash Games",
-      image: "/images/efootball-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "18",
-      name: "Buy Feature",
-      image: "/images/efootball-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "19",
-      name: "FTN Mania",
-      image: "/images/efootball-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "20",
-      name: "Crypto Games",
-      image: "/images/efootball-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "21",
-      name: "Instant Game",
-      image: "/images/efootball-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "22",
-      name: "Virtual Betting",
-      image: "/images/efootball-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "23",
-      name: "Megaways",
-      image: "/images/efootball-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "24",
-      name: "Chinese New Year",
-      image: "/images/efootball-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "24",
-      name: "Valentine's Day",
-      image: "/images/efootball-banner.jpg",
-      selectedColor: "#4795b1",
-      
-    },
-    {
-      id: "24",
-      name: "St. Patrick's Day",
-      image: "/images/efootball-banner.jpg",
-      selectedColor: "#4795b1",
-     
-    },
-  ];
+  const { t } = useTranslation();
+    const gameMenuItems = getGameMenuItems(t); // ✅ now valid
+
   const [selectedGame, setSelectedGame] = useState(gameMenuItems[0].id);
 
   const scrollContainerRef = useRef(null);
   const selectedItemRef = useRef(null);
 
   const getGameIcon = (gameName) => {
+    if (typeof gameName !== 'string') return faGamepad;
     const name = gameName.toLowerCase();
     if (name.includes("football") && !name.includes("e-football")) return faFutbol;
     if (name.includes("basketball")) return faBasketballBall;
@@ -233,61 +55,72 @@ export default function GameSlider() {
   };
 
   return (
-    <div className="game-menu-wrapper">
-      <div className="game-menu-outer-container ps-[0px]">
-        <div className="game-menu-container" ref={scrollContainerRef}>
-          {gameMenuItems.map((item) => {
-            const isSelected = selectedGame === item.id;
-            // const isThisSticky = isSelected && isSticky;
+    <div className="relative text-white py-2 lg:px-4">
+      {/* Left Scroll Button */}
 
-            return (
+      {/* Scrollable Game Menu */}
+      <div
+        className="max-w-full overflow-x-auto px-1 flex gap-1 scrollbar-hide lg:pr-10 lg:pl-10"
+        ref={scrollContainerRef}
+      >
+        {gameMenuItems.map((item) => {
+          const isSelected = selectedGame === item.id;
+          return (
+            <div
+              key={item.id}
+              ref={isSelected ? selectedItemRef : null}
+              onClick={() => handleGameSelect(item.id)}
+              className={`h-16 rounded-lg border-2 overflow-hidden cursor-pointer flex items-center justify-center transition-all lg:h-10 lg:rounded lg:border-none lg:mt-5
+              ${
+                item.name?.length > 14
+                  ? "min-w-[150px]"
+                  : item.name?.length > 10
+                  ? "min-w-[90px]"
+                  : "min-w-[70px]"
+              }
+              ${
+                isSelected
+                  ? "bg-[#52b8d9] text-black sticky-item"
+                  : "bg-[#1a253a] text-[#8d929d] hover:bg-[#3a404a] unselected-item"
+              }
+            `}
+            >
               <div
-                key={item.id}
-                ref={isSelected ? selectedItemRef : null}
-                className={`game-item ${
-                  isSelected ? "selected sticky-selected" : ""
-                }`}
-                onClick={() => handleGameSelect(item.id)}
-                style={
-                  isSelected
-                    ? {
-                        backgroundColor: item.selectedColor,
-                        borderColor: item.selectedColor,
-                      }
-                    : {}
-                }
+                className="relative flex flex-col items-center justify-center text-center w-full px-2 py-1"
+                style={{
+                  backgroundImage: `url(${item.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
               >
-                <div className="game-item-content-wrapper">
-                  <div className="game-item-overlay">
-                    <div className="icon-container">
-                      <FontAwesomeIcon
-                        icon={getGameIcon(item.name)}
-                        className="game-icon"
-                        style={{
-                          color: isSelected ? "#fff" : item.selectedColor,
-                        }}
-                      />
-                      {item.notificationCount > 0 && (
-                        <span className="notification-badge">
-                          {item.notificationCount > 99
-                            ? "99+"
-                            : item.notificationCount}
-                        </span>
-                      )}
-                    </div>
-                    <h3
-                      className="game-name"
-                      style={isSelected ? { color: "#fff" } : {}}
-                    >
-                      {item.name}
-                    </h3>
+                <div className="absolute inset-0 rounded-lg transition-all duration-300" />
+                <div className="relative flex flex-col lg:gap-1 items-center lg:flex-row">
+                  <div className="relative inline-block mb-0">
+                    <FontAwesomeIcon
+                      icon={getGameIcon(item.name)}
+                      className="text-2xl lg:text-[13px] transition-transform"
+                      style={{
+                        color: isSelected
+                          ? "#000"
+                          : "#8d929d",
+                      }}
+                    />
                   </div>
+                  <h3
+                    className={`text-[10px] leading-[1.2] font-bold mt-1 lg:text-[13px] ${
+                      isSelected ? "text-black" : "text-[#8d929d]"
+                    }`}
+                  >
+                    {item.name}
+                  </h3>
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
+
+      {/* Right Scroll Button */}
     </div>
   );
 }

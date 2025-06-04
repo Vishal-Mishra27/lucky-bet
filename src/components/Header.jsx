@@ -17,8 +17,8 @@ import DepositModal from "../pages/Wallet/depositModal/DepositModal";
 import { useNavigate } from "react-router-dom";
 
 const languages = [
-  { name: "UAE", flag: "uaeFlag.webp" },
-  { name: "ENG", flag: "engFlag.jpg" },
+  { name: "uae", flag: "uaeFlag.webp" },
+  { name: "en", flag: "engFlag.jpg" },
 ];
 
 function Header({ audioRef, isAudioOn, setIsAudioOn }) {
@@ -35,6 +35,7 @@ function Header({ audioRef, isAudioOn, setIsAudioOn }) {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
   const [isDepositModal, setIsDepositModal] = useState(false);
+  const [depositSection, setDepositSection] = useState("Deposit");
 
   const { myDetails } = useProfile(userId);
 
@@ -67,11 +68,23 @@ function Header({ audioRef, isAudioOn, setIsAudioOn }) {
       </div>
     </button>
   );
+  const openDepositSection = (sectionName) => {
+    setDepositSection(sectionName);
+    setIsDepositModal(true);
+  };
+
+  // const [depositSection, setDepositSection] = useState("Deposit");
 
   return (
     <div className="border-b-[0.1px] h-full md:border-0 border-bg1">
       {isOpenLogin && <Login setIsOpenLogin={setIsOpenLogin} />}
-      {walletModal && <WalletModal setIsWalletModal={setIsWalletModal} />}
+      {/* {walletModal && <WalletModal setIsWalletModal={setIsWalletModal} />} */}
+      {walletModal && (
+        <WalletModal
+          setIsWalletModal={setIsWalletModal}
+          openDepositSection={openDepositSection}
+        />
+      )}
       {profileListModal && (
         <ProfileListModal setIsProfileListModal={setIsProfileListModal} />
       )}
@@ -83,105 +96,116 @@ function Header({ audioRef, isAudioOn, setIsAudioOn }) {
         />
       )}
       {notificationModal && <NotificationModal />}
-      {isDepositModal && (
+      {/* {isDepositModal && (
         <DepositModal
           setIsDepositModal={setIsDepositModal}
           toggleEye={toggleEye}
           setToggleEye={setToggleEye}
         />
+      )} */}
+      {isDepositModal && (
+        <DepositModal
+          setIsDepositModal={setIsDepositModal}
+          toggleEye={toggleEye}
+          setToggleEye={setToggleEye}
+          initialSection={depositSection}
+        />
       )}
 
-     
-        <div className="bg-mainBg px-2 h-14 flex justify-between items-center">
-          <img className="h-6" src={usawinlogo} alt="logo not found" onClick={()=>navigate('/')} />
-          {!userId ? (
-            <div className="flex items-center gap-0.5">
-              <button
-                onClick={() => setIsOpenLogin(true)}
-                className=" hover:bg-bg4_dark text-white rounded text-[13px] px-2 py-1.5 underline"
-              >
-                SIGN IN
-              </button>
-              <LanguageButton />
-              <div className="h-8 w-[0.3px] hidden xsm:block bg-bg1"></div>
-              <div className="hidden xsm:flex items-center text-white rounded-md text-xs w-16 mr-4 py-1.5 bg-bg2 ">
-                <IndianTime />
-              </div>
-              <div className="h-8 w-[0.3px] hidden xsm:block bg-bg1"></div>
-              <button
-                onClick={() => setNotificationModal(!notificationModal)}
-                className={`transform transition-all duration-300 ease-in-out ${
-                  // Added transition-all and ease-in-out
-                  notificationModal ? "rotate-90" : "rotate-0"
-                } 
+      <div className="bg-mainBg px-2 h-14 flex justify-between items-center">
+        <img
+          className="h-6"
+          src={usawinlogo}
+          alt="logo not found"
+          onClick={() => navigate("/")}
+        />
+        {!userId ? (
+          <div className="flex items-center gap-0.5">
+            <button
+              onClick={() => setIsOpenLogin(true)}
+              className=" hover:bg-bg4_dark text-white rounded text-[13px] px-2 py-1.5 underline"
+            >
+              SIGN IN
+            </button>
+            <LanguageButton />
+            <div className="h-8 w-[0.3px] hidden xsm:block bg-bg1"></div>
+            <div className="hidden xsm:flex items-center text-white rounded-md text-xs w-16 mr-4 py-1.5 bg-bg2 ">
+              <IndianTime />
+            </div>
+            <div className="h-8 w-[0.3px] hidden xsm:block bg-bg1"></div>
+            <button
+              onClick={() => setNotificationModal(!notificationModal)}
+              className={`transform transition-all duration-300 ease-in-out ${
+                // Added transition-all and ease-in-out
+                notificationModal ? "rotate-90" : "rotate-0"
+              } 
                w-8 h-8 rounded-full flex items-center justify-center hover:bg-bg1 
   `}
-                style={{
-                  backgroundColor: notificationModal
-                    ? "rgba(255, 255, 255, 0.6)"
-                    : "", // Default background will come from Tailwind or be transparent
-                  color: notificationModal ? "black" : "", // Default color from Tailwind or inherited
-                }}
-              >
-                <PiDotsThreeOutlineVerticalFill className="text-base" />{" "}
-                {/* Adjust icon size if needed */}
-              </button>
+              style={{
+                backgroundColor: notificationModal
+                  ? "rgba(255, 255, 255, 0.6)"
+                  : "", // Default background will come from Tailwind or be transparent
+                color: notificationModal ? "black" : "", // Default color from Tailwind or inherited
+              }}
+            >
+              <PiDotsThreeOutlineVerticalFill className="text-base" />{" "}
+              {/* Adjust icon size if needed */}
+            </button>
+          </div>
+        ) : (
+          <div className="flex items-center gap-2.5">
+            <button
+              onClick={() => setIsDepositModal(!isDepositModal)}
+              className="hidden xsm:flex items-center bg-bg4 hover:bg-bg4_dark text-black rounded text-sm px-2 py-1"
+            >
+              <span className="bg-black rounded-full w-4 h-4 flex items-center justify-center text-xs text-bg4">
+                $
+              </span>
+              &nbsp;DEPOSIT
+            </button>
+            <div className="h-8 w-[0.3px] bg-bg1"></div>
+            <button
+              onMouseEnter={() => setIsWalletModal(true)}
+              onMouseLeave={() => setIsWalletModal(false)}
+              className="relative group text-xs"
+            >
+              <div className="invisible group-hover:visible h-[3px] rounded-t-md w-full bg-bg4 absolute top-0"></div>
+              <p>
+                {toggleEye
+                  ? Number(myDetails?.data?.wallet)?.toFixed(2) ?? "0.00"
+                  : "********"}
+                &nbsp;{toggleEye ? currency?.uae : ""}
+              </p>
+            </button>
+            <div className="h-8 w-[0.3px] bg-bg1"></div>
+            <button
+              onMouseEnter={() => setIsProfileListModal(true)}
+              onMouseLeave={() => setIsProfileListModal(false)}
+              className="relative group"
+            >
+              <div className="invisible group-hover:visible h-[3px] rounded-t-md w-full bg-bg4 absolute top-0"></div>
+              <IoPersonCircleSharp className="text-textGray" size={35} />
+            </button>
+            <div className="h-8 w-[0.3px] hidden xsm:block bg-bg1"></div>
+            <LanguageButton />
+            <div className="h-8 w-[0.3px] hidden xsm:block bg-bg1"></div>
+            <div className="hidden xsm:flex items-center text-white rounded-md text-xs w-16 mr-4 py-1.5 bg-bg2">
+              <IndianTime />
             </div>
-          ) : (
-            <div className="flex items-center gap-2.5">
-              <button
-                onClick={() => setIsDepositModal(!isDepositModal)}
-                className="hidden xsm:flex items-center bg-bg4 hover:bg-bg4_dark text-black rounded text-sm px-2 py-1"
-              >
-                <span className="bg-black rounded-full w-4 h-4 flex items-center justify-center text-xs text-bg4">
-                  $
-                </span>
-                &nbsp;DEPOSIT
-              </button>
-              <div className="h-8 w-[0.3px] bg-bg1"></div>
-              <button
-                onMouseEnter={() => setIsWalletModal(true)}
-                onMouseLeave={() => setIsWalletModal(false)}
-                className="relative group text-xs"
-              >
-                <div className="invisible group-hover:visible h-[3px] rounded-t-md w-full bg-bg4 absolute top-0"></div>
-                <p>
-                  {toggleEye
-                    ? Number(myDetails?.data?.wallet)?.toFixed(2) ?? "0.00"
-                    : "********"}
-                  &nbsp;{toggleEye ? currency?.uae : ""}
-                </p>
-              </button>
-              <div className="h-8 w-[0.3px] bg-bg1"></div>
-              <button
-                onMouseEnter={() => setIsProfileListModal(true)}
-                onMouseLeave={() => setIsProfileListModal(false)}
-                className="relative group"
-              >
-                <div className="invisible group-hover:visible h-[3px] rounded-t-md w-full bg-bg4 absolute top-0"></div>
-                <IoPersonCircleSharp className="text-textGray" size={35} />
-              </button>
-              <div className="h-8 w-[0.3px] hidden xsm:block bg-bg1"></div>
-              <LanguageButton />
-              <div className="h-8 w-[0.3px] hidden xsm:block bg-bg1"></div>
-              <div className="hidden xsm:flex items-center text-white rounded-md text-xs w-16 mr-4 py-1.5 bg-bg2">
-                <IndianTime />
-              </div>
-              <div className="h-8 w-[0.3px] bg-bg1"></div>
-              <button
-                onClick={() => setNotificationModal(!notificationModal)}
-                className={`transform transition-transform duration-200 ${
-                  notificationModal
-                    ? "bg-textGray2 rotate-180"
-                    : "bg-bg2 rotate-0"
-                } hover:bg-bg1 py-1.5 px-2.5 rounded-md`}
-              >
-                <PiDotsThreeOutlineVerticalFill />
-              </button>
-            </div>
-          )}
-        </div>
-      
+            <div className="h-8 w-[0.3px] bg-bg1"></div>
+            <button
+              onClick={() => setNotificationModal(!notificationModal)}
+              className={`transform transition-transform duration-200 ${
+                notificationModal
+                  ? "bg-textGray2 rotate-180"
+                  : "bg-bg2 rotate-0"
+              } hover:bg-bg1 py-1.5 px-2.5 rounded-md`}
+            >
+              <PiDotsThreeOutlineVerticalFill />
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

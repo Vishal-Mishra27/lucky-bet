@@ -1,99 +1,148 @@
 import { useState, useRef, useEffect } from "react";
 import { Listbox } from "@headlessui/react";
 import { Filter, CalendarDays, ChevronDown, ChevronUp, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import "../../i18";
 
-const allSports = [
-  "Football",
-  "Ice Hockey",
-  "Basketball",
-  "Tennis",
-  "Volleyball",
-  "American Football",
-  "Aussie Rules",
-  "Badminton",
-  "Baseball",
-  "Beach Football",
-  "Beach Volleyball",
-  "Boxing",
-  "Cricket",
-  "Table Tennis",
-  "Golf",
-  "Rugby",
-  "Handball",
-  "Hockey",
-  "Squash",
-  "Snooker",
-  "Wrestling",
-  "Fencing",
-  "Archery",
-  "Swimming",
-  "Athletics",
-  "Gymnastics",
-  "Skateboarding",
-  "Surfing",
-  "Karate",
-  "Judo",
-  "Taekwondo",
-  "Motorsport",
-  "Cycling",
-  "Rowing",
-  "Sailing",
-  "Darts",
-  "Esports",
-  "Lacrosse",
-  "Softball",
-  "Polo",
-  "Kickboxing",
-  "Weightlifting",
-  "Speed Skating",
-  "Biathlon",
-  "Triathlon",
-  "Horse Racing",
-];
-
-const competitions = [
-  "All",
-  "Champions League",
-  "Premier League",
-  "La Liga",
-  "Serie A",
-  "Bundesliga",
-  "Ligue 1",
-  "Europa League",
-  "Conference League",
-  "FA Cup",
-  "EFL Cup",
-  "Copa del Rey",
-  "DFB-Pokal",
-  "Coppa Italia",
-  "Supercopa de España",
-  "UEFA Super Cup",
-  "FIFA Club World Cup",
-  "MLS",
-  "Brasileirão",
-  "Argentine Primera División",
-  "Eredivisie",
-  "Portuguese Primeira Liga",
-  "Scottish Premiership",
-  "Turkish Süper Lig",
-  "Greek Super League",
-  "AFC Champions League",
-  "CAF Champions League",
-  "Indian Super League",
-  "Saudi Pro League",
-  "Chinese Super League",
-  "World Cup",
-  "Euro Cup",
-  "Copa América",
-  "African Cup of Nations",
-  "Asian Cup",
-  "Gold Cup",
-  "Nations League",
-];
 
 
 
 export default function FilterPannel() {
+  const { t, i18n } = useTranslation();
+  const {
+    Football,
+    Basketball,
+    Tennis,
+    Volleyball,
+    IceHockey,
+    Baseball,
+    TableTennis,
+    Badminton,
+    Cricket,
+    Darts,
+    Wrestling,
+    Fencing,
+    Rugby,
+    Golf,
+    Boxing,
+    Snooker,
+    Hockey,
+    ESports,
+    Handball,
+    All,
+    Lacrosse,
+    Softball,
+    Polo,
+    Kickboxing,
+    Weightlifting,
+  } = t("GameList");
+  const {
+    ChampionsLeague,
+    PremierLeague,
+    LaLiga,
+    SerieA,
+    Bundesliga,
+    Ligue1,
+    EuropaLeague,
+    ConferenceLeague,
+    FACup,
+    EFLCup,
+    CopaDelRey,
+    DFBPokal,
+    CoppaItalia,
+    SupercopadeEspaña,
+    UEFASuperCup,
+    FIFAClubWorldCup,
+    MLS,
+    Brasileirão,
+    ArgentinePrimeraDivisión,
+    Eredivisie,
+    PortuguesePrimeiraLiga,
+    ScottishPremiership,
+    TurkishSüperLig,
+    GreekSuperLeague,
+    AFCChampionsLeague,
+    CAFChampionsLeague,
+    IndianSuperLeague,
+    SaudiProLeague,
+    ChineseSuperLeague,
+    WorldCup,
+    EuroCup,
+    CopaAmérica,
+    AfricanCupofNations,
+    AsianCup,
+    GoldCup,
+    NationsLeague,
+    Competition,
+  } = t("League");
+
+
+  const { Sport, filter, Reset, Show } = t("Filter");
+  const allSports = [
+    Football,
+    IceHockey,
+    Basketball,
+    Tennis,
+    Volleyball,
+    Baseball,
+    TableTennis,
+    Badminton,
+    Hockey,
+    ESports,
+    Handball,
+    Boxing,
+    Cricket,
+    Lacrosse,
+    Golf,
+    Rugby,
+    Softball,
+    Polo,
+    Kickboxing,
+    Snooker,
+    Wrestling,
+    Fencing,
+    Weightlifting,
+    Darts,
+  ];
+
+  const competitions = [
+    ChampionsLeague,
+    PremierLeague,
+    LaLiga,
+    SerieA,
+    Bundesliga,
+    Ligue1,
+    EuropaLeague,
+    ConferenceLeague,
+    FACup,
+    EFLCup,
+    CopaDelRey,
+    DFBPokal,
+    CoppaItalia,
+    SupercopadeEspaña,
+    UEFASuperCup,
+    FIFAClubWorldCup,
+    MLS,
+    Brasileirão,
+    ArgentinePrimeraDivisión,
+    Eredivisie,
+    PortuguesePrimeiraLiga,
+    ScottishPremiership,
+    TurkishSüperLig,
+    GreekSuperLeague,
+    AFCChampionsLeague,
+    CAFChampionsLeague,
+    IndianSuperLeague,
+    SaudiProLeague,
+    ChineseSuperLeague,
+    WorldCup,
+    EuroCup,
+    CopaAmérica,
+    AfricanCupofNations,
+    AsianCup,
+    GoldCup,
+    NationsLeague,
+  ];
   const [startDate, setStartDate] = useState("2025-05-24");
   const [endDate, setEndDate] = useState("2025-05-24");
   const [selectedSport, setSelectedSport] = useState("Football");
@@ -108,12 +157,14 @@ export default function FilterPannel() {
     setStartDate("2025-05-24");
     setEndDate("2025-05-24");
     setSelectedSport("Football");
-    setSelectedCompetition("All");
+    setSelectedCompetition(All);
     setSportQuery("");
   };
 
-  const filteredSports = allSports.filter((sport) =>
-    sport.toLowerCase().includes(sportQuery.toLowerCase())
+  const filteredSports = allSports.filter(
+    (sport) =>
+      typeof sport === "string" &&
+      sport.toLowerCase().includes(sportQuery.toLowerCase())
   );
 
 const [isSportOpen, setIsSportOpen] = useState(false); 
@@ -157,7 +208,7 @@ useEffect(() => {
       <div className="flex items-center gap-2 text-[12px] font-100 border-gray-600 pt-[8px] pl-[5px] pr-[5px] pb-[7px] justify-between w-90 bg-white/20 rounded-[5px]">
         <div className="flex gap-2 text-white 90">
           <Filter className="h-5 w-5" />
-          <span>Filter</span>
+          <span>{filter}</span>
         </div>
         <div>
           <button onClick={() => setIsExpanded(!isExpanded)}>
@@ -220,7 +271,7 @@ useEffect(() => {
               <div className="w-100 m-2">
                 <div className="relative w-50 bg-[rgba(255,255,255,.15)] rounded-[6px] mt-2 h-[7vh] lg:h-[4vh] md2:h-[6vh]">
                   <label className="text-xsm block pt-1 pl-2 text-hederColor2">
-                    Sport
+                    {Sport}
                   </label>
 
                   <div ref={sportDropdownRef}>
@@ -256,8 +307,9 @@ useEffect(() => {
                         {isSportOpen && (
                           <div
                             className="fixed inset-0 z-50 flex justify-center items-center backdrop-blur-sm bg-black bg-opacity-40 transition duration-300"
-                            onClick={() => {setIsSportOpen(false); }} // Clicking outside closes modal
-                            
+                            onClick={() => {
+                              setIsSportOpen(false);
+                            }} // Clicking outside closes modal
                           >
                             <div
                               className="relative mt-[10vh] w-full bg-[#0c1327] rounded-lg shadow-lg max-h-[80vh] overflow-auto z-50 md2:w-[50%] lg:mt-[10vh] xs3:w-[80%] xs3:mt-[10vh]"
@@ -265,7 +317,12 @@ useEffect(() => {
                             >
                               {/* Close Button */}
                               <div className="sticky top-0 z-20 flex justify-end bg-[#0c1327] rounded-t-lg p-2">
-                                <button onClick={() => {setIsSportOpen(false); setSportQuery('')}}>
+                                <button
+                                  onClick={() => {
+                                    setIsSportOpen(false);
+                                    setSportQuery("");
+                                  }}
+                                >
                                   <X className="w-5 h-5 lg:h-10 lg:w-10 text-gray hover:text-white" />
                                 </button>
                               </div>
@@ -331,7 +388,7 @@ useEffect(() => {
               <div className="w-100 m-2">
                 <div className="relative w-50 bg-[rgba(255,255,255,.15)] rounded-[6px] mt-2 h-[7vh] lg:h-[4vh] md2:h-[6vh]">
                   <label className="text-xsm block pt-1 pl-2 text-hederColor2">
-                    Competition
+                    {Competition}
                   </label>
 
                   <div ref={competitionDropdownRef}>
@@ -447,10 +504,10 @@ useEffect(() => {
                 onClick={resetFilters}
                 className="w-[95%] md2:w-[98%] p-2 border border-gray-500 rounded text-white text-xsm"
               >
-                RESET
+                {Reset}
               </button>
               <button className="w-[95%] md2:w-[98%]  p-2 bg-sky-500 hover:bg-sky-600 rounded text-black mb-2 text-xsm">
-                SHOW
+                {Show}
               </button>
             </div>
           </div>

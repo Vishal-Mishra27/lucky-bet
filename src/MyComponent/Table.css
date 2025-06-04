@@ -466,20 +466,20 @@ body { /* Optional: set body font if not set globally */
   background-color: #000C24;
   width: 100%;
   margin: 0;
-  border-top: 1px solid #111; /* optional subtle border */
-  border-bottom: 1px solid #111;
+  border-top: 1px solid #000C24; /* optional subtle border */
+  border-bottom: 1px solid #000C24;
 }
 .market-league-separator-2 {
-  height: 3vh;
-  background-color: #000;
-  width: 0.55%;
+  height: 19px;
+  background-color: #000C24;
+  width: 1px;
   margin: 0;
-  border-top: 1px solid #111; /* optional subtle border */
-  border-bottom: 1px solid #111;
+  border-top: 1px solid #000C24; /* optional subtle border */
+  border-bottom: 1px solid #000C24;
 }
 .market-league-separator-data {
   height: 1px;
-  background-color: #000;
+  background-color: #000C24;
   width: 100%;
   margin: 0;
   border-top: 1px solid #111; /* optional subtle border */

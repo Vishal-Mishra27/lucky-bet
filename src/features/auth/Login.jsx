@@ -6,6 +6,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import ForgotPassword from './ForgotPassword';
 import apis from '../../services/api';
+import Favicon from '../../../public/favicon.png'
 const loginEndpoint = apis?.login;
 
 const Login = ({ setIsOpenLogin }) => {
@@ -40,23 +41,39 @@ const Login = ({ setIsOpenLogin }) => {
     <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
       {!isForgetOpen ? (
         <div className="bg-mainBg h-[80%] w-full max-w-sm rounded-lg shadow-lg p-5 relative">
-          <button onClick={() => setIsOpenLogin(false)} className="absolute top-4 right-4 text-3xl text-textGray2 hover:text-white ">&times;</button>
+          <button
+            onClick={() => setIsOpenLogin(false)}
+            className="absolute top-4 right-4 text-3xl text-textGray2 hover:text-white "
+          >
+            &times;
+          </button>
 
           <div className="text-3xl font-bold mb-4 flex items-center gap-1">
-            <img className='h-6' src="favicon.png" alt="logo not found" />
+            <img className="h-6" src={Favicon} alt="logo not found" />
           </div>
 
-          <div className='w-full border-bg2 border-b-[0.5px]'></div>
-          <p className="text-xsm mb-1 text-textGray1 mt-3">Already have an account?</p>
-          <h2 className="text-sm mb-4 text-white">SIGN IN, WE ARE WAITING FOR YOU</h2>
+          <div className="w-full border-bg2 border-b-[0.5px]"></div>
+          <p className="text-xsm mb-1 text-textGray1 mt-3">
+            Already have an account?
+          </p>
+          <h2 className="text-sm mb-4 text-white">
+            SIGN IN, WE ARE WAITING FOR YOU
+          </h2>
 
           <Formik
-            initialValues={{ email: '', password: '' }}
+            initialValues={{ email: "", password: "" }}
             validationSchema={LoginSchema}
             onSubmit={handleLogin}
             validateOnChange
           >
-            {({ handleChange, handleSubmit, values, errors, touched, isSubmitting }) => (
+            {({
+              handleChange,
+              handleSubmit,
+              values,
+              errors,
+              touched,
+              isSubmitting,
+            }) => (
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                   <div className="relative w-full">
@@ -65,7 +82,11 @@ const Login = ({ setIsOpenLogin }) => {
                       name="loginId"
                       id="loginId"
                       placeholder=" "
-                      className={`peer w-full px-4 py-0.5 h-14 rounded text-sm bg-bg1 text-white border ${errors.loginId && touched.loginId ? 'border-customred' : 'border-transparent'} focus:outline-none`}
+                      className={`peer w-full px-4 py-0.5 h-14 rounded text-sm bg-bg1 text-white border ${
+                        errors.loginId && touched.loginId
+                          ? "border-customred"
+                          : "border-transparent"
+                      } focus:outline-none`}
                       value={values.loginId}
                       onChange={handleChange}
                     />
@@ -76,17 +97,25 @@ const Login = ({ setIsOpenLogin }) => {
                       Email / Username
                     </label>
                   </div>
-                  {errors.loginId && touched.loginId && <p className="text-white bg-[#33142C] p-0.5 rounded-sm text-xsm mt-1">{errors.loginId}</p>}
+                  {errors.loginId && touched.loginId && (
+                    <p className="text-white bg-[#33142C] p-0.5 rounded-sm text-xsm mt-1">
+                      {errors.loginId}
+                    </p>
+                  )}
                 </div>
 
                 <div className="mb-4 relative">
                   <div className="relative w-full">
                     <input
-                      type={showPassword ? 'text' : 'password'}
+                      type={showPassword ? "text" : "password"}
                       name="password"
                       id="password"
                       placeholder=" "
-                      className={`peer w-full px-4 py-0.5 h-14 rounded text-sm bg-bg1 text-white border ${errors.password && touched.password ? 'border-customred' : 'border-transparent'} focus:outline-none`}
+                      className={`peer w-full px-4 py-0.5 h-14 rounded text-sm bg-bg1 text-white border ${
+                        errors.password && touched.password
+                          ? "border-customred"
+                          : "border-transparent"
+                      } focus:outline-none`}
                       value={values.password}
                       onChange={handleChange}
                     />
@@ -101,10 +130,18 @@ const Login = ({ setIsOpenLogin }) => {
                       className="absolute right-3 top-4 text-gray"
                       onClick={() => setShowPassword(!showPassword)}
                     >
-                      {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+                      {showPassword ? (
+                        <FaEyeSlash size={20} />
+                      ) : (
+                        <FaEye size={20} />
+                      )}
                     </button>
                   </div>
-                  {errors.password && touched.password && <p className="text-white bg-[#33142C] p-0.5 rounded-sm text-xsm mt-1">{errors.password}</p>}
+                  {errors.password && touched.password && (
+                    <p className="text-white bg-[#33142C] p-0.5 rounded-sm text-xsm mt-1">
+                      {errors.password}
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex items-center mb-4">
@@ -112,21 +149,31 @@ const Login = ({ setIsOpenLogin }) => {
                     type="checkbox"
                     className="mr-2 appearance-none h-4 w-4 border border-gray rounded bg-bg1 checked:bg-bg4"
                   />
-                  <label className='text-xsm text-textGray1'>Remember me</label>
+                  <label className="text-xsm text-textGray1">Remember me</label>
                 </div>
 
-                <button type="submit" disabled={isSubmitting} className="w-full py-2 bg-bg4 hover:bg-bg5 text-black text-xsm rounded transition">
-                  {isSubmitting ? 'Signing in...' : 'SIGN IN'}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-2 bg-bg4 hover:bg-bg5 text-black text-xsm rounded transition"
+                >
+                  {isSubmitting ? "Signing in..." : "SIGN IN"}
                 </button>
               </form>
             )}
           </Formik>
-          <button onClick={() => setIsForgetOpen(true)} className="mt-8 text-center text-[15px] hover:text-white text-textGray1 cursor-pointer hover:underline">
+          <button
+            onClick={() => setIsForgetOpen(true)}
+            className="mt-8 text-center text-[15px] hover:text-white text-textGray1 cursor-pointer hover:underline"
+          >
             FORGOT YOUR PASSWORD?
           </button>
         </div>
       ) : (
-        <ForgotPassword setIsOpenLogin={setIsOpenLogin} setIsForgetOpen={setIsForgetOpen} />
+        <ForgotPassword
+          setIsOpenLogin={setIsOpenLogin}
+          setIsForgetOpen={setIsForgetOpen}
+        />
       )}
     </div>
   );

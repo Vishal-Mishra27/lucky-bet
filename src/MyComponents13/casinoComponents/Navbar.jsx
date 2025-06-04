@@ -61,28 +61,39 @@
 import React, { useState } from 'react';
 import '../../MyComponent/Header2.css'; 
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+import "../../i18";
 
 export default function Navbar() {
+  const { t, i18n } = useTranslation();
+  const {
+    Home,
+    Tournaments,
+    Jackpots,
+  } = t("GameHeader");
+
   const navigate = useNavigate();
   const menuItems = [
     {
       id: "1",
-      name: "Home",
+      name: Home,
       route: "",
     },
     {
       id: "2",
-      name: "Tournaments",
+      name: Tournaments,
       route: "Tournaments",
     },
     {
       id: "3",
-      name: "Jackpots",
+      name: Jackpots,
       route: "jackpots",
     },
   ];
 
   const [activeItem, setActiveItem] = useState(menuItems[0].id); 
+  const currentRoute = location.pathname.split("/")[2] || "home";
+
 
 const handleItemClick = (route, itemId) => {
   setActiveItem(itemId);
@@ -99,9 +110,11 @@ const handleItemClick = (route, itemId) => {
         {menuItems.map((item) => (
           <li
             key={item.id}
-            className={`navbar-item ${activeItem === item.id ? "active" : ""}`}
+            className={`navbar-item ${
+              currentRoute === item.route ? "active" : ""
+            }`}
             // onClick={() => handleItemClick(item.route, item.itemId)}
-            onClick={() => handleItemClick(item.route, item.id)}
+            onClick={() => handleItemClick(item.route)}
           >
             {/* You can use React Router's <Link> component here if you're using it */}
             {/* <a href={item.link}>{item.name}</a> */}

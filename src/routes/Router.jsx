@@ -29,6 +29,8 @@ import LiveCalenderSports from "../MyComponents12/sportSection/LiveCalender";
 import ResultSports from "../MyComponents12/sportSection/Result";
 import Jackpots from "../MyComponents12/casinoSection/Jackpots"
 import Tournaments from "../MyComponents12/casinoSection/Tournaments";
+import WalletModal from "../components/WalletModal";
+import Deposit from "../pages/Wallet/depositModal/DepositModal";
 
 export const Router = createBrowserRouter([
   {
@@ -42,6 +44,8 @@ export const Router = createBrowserRouter([
       // { path: "/", element: <ResultSports /> },
       // { path: "/", element: <Jackpots /> },
       // { path: "/", element: <Tournaments /> },
+      // { path: "/", element: <WalletModal /> },
+      // { path: "/", element: <Deposit /> },
       {
         path: "/live", // This becomes the base path
         element: <LiveLayout />, // Header2 rendered here
@@ -67,6 +71,7 @@ export const Router = createBrowserRouter([
         element: <CasinoLayout />, // Header2 rendered here
         children: [
           { path: "", element: <CasinoHome1 /> },
+          { path: "home", element: <CasinoHome1 /> },
           { path: "jackpots", element: <Jackpots /> },
           { path: "Tournaments", element: <Tournaments /> },
         ],

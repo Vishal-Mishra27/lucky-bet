@@ -1,99 +1,147 @@
 import { useState, useRef, useEffect } from "react";
 import { Listbox } from "@headlessui/react";
 import { Filter, CalendarDays, ChevronDown, ChevronUp, X } from "lucide-react";
-
-const allSports = [
-  "Football",
-  "Ice Hockey",
-  "Basketball",
-  "Tennis",
-  "Volleyball",
-  "American Football",
-  "Aussie Rules",
-  "Badminton",
-  "Baseball",
-  "Beach Football",
-  "Beach Volleyball",
-  "Boxing",
-  "Cricket",
-  "Table Tennis",
-  "Golf",
-  "Rugby",
-  "Handball",
-  "Hockey",
-  "Squash",
-  "Snooker",
-  "Wrestling",
-  "Fencing",
-  "Archery",
-  "Swimming",
-  "Athletics",
-  "Gymnastics",
-  "Skateboarding",
-  "Surfing",
-  "Karate",
-  "Judo",
-  "Taekwondo",
-  "Motorsport",
-  "Cycling",
-  "Rowing",
-  "Sailing",
-  "Darts",
-  "Esports",
-  "Lacrosse",
-  "Softball",
-  "Polo",
-  "Kickboxing",
-  "Weightlifting",
-  "Speed Skating",
-  "Biathlon",
-  "Triathlon",
-  "Horse Racing",
-];
-
-const competitions = [
-  "All",
-  "Champions League",
-  "Premier League",
-  "La Liga",
-  "Serie A",
-  "Bundesliga",
-  "Ligue 1",
-  "Europa League",
-  "Conference League",
-  "FA Cup",
-  "EFL Cup",
-  "Copa del Rey",
-  "DFB-Pokal",
-  "Coppa Italia",
-  "Supercopa de España",
-  "UEFA Super Cup",
-  "FIFA Club World Cup",
-  "MLS",
-  "Brasileirão",
-  "Argentine Primera División",
-  "Eredivisie",
-  "Portuguese Primeira Liga",
-  "Scottish Premiership",
-  "Turkish Süper Lig",
-  "Greek Super League",
-  "AFC Champions League",
-  "CAF Champions League",
-  "Indian Super League",
-  "Saudi Pro League",
-  "Chinese Super League",
-  "World Cup",
-  "Euro Cup",
-  "Copa América",
-  "African Cup of Nations",
-  "Asian Cup",
-  "Gold Cup",
-  "Nations League",
-];
-
+import CustomDatePicker from "../../src/reusableComponents/datePicker/CustomDatePicker";
+import { useTranslation } from "react-i18next";
+import "../i18";
 
 
 export default function FilterPannel() {
+  const { t, i18n } = useTranslation();
+  const {
+    Football,
+    Basketball,
+    Tennis,
+    Volleyball,
+    IceHockey,
+    Baseball,
+    TableTennis,
+    Badminton,
+    Cricket,
+    Darts,
+    Wrestling,
+    Fencing,
+    Rugby,
+    Golf,
+    Boxing, 
+    Snooker,
+    Hockey,
+    ESports,
+    Handball,
+    All,
+    Lacrosse,
+    Softball,
+    Polo,
+    Kickboxing,
+    Weightlifting
+  } = t("GameList");
+  const {
+    ChampionsLeague,
+    PremierLeague,
+    LaLiga,
+    SerieA,
+    Bundesliga,
+    Ligue1,
+    EuropaLeague,
+    ConferenceLeague,
+    FACup,
+    EFLCup,
+    CopaDelRey,
+    DFBPokal,
+    CoppaItalia,
+    SupercopadeEspaña,
+    UEFASuperCup,
+    FIFAClubWorldCup,
+    MLS,
+    Brasileirão,
+    ArgentinePrimeraDivisión,
+    Eredivisie,
+    PortuguesePrimeiraLiga,
+    ScottishPremiership,
+    TurkishSüperLig,
+    GreekSuperLeague,
+    AFCChampionsLeague,
+    CAFChampionsLeague,
+    IndianSuperLeague,
+    SaudiProLeague,
+    ChineseSuperLeague,
+    WorldCup,
+    EuroCup,
+    CopaAmérica,
+    AfricanCupofNations,
+    AsianCup,
+    GoldCup,
+    NationsLeague,
+    Competition
+  } = t("League");
+
+  const { Sport, filter, Reset, Show } = t("Filter");
+  const allSports = [
+    Football,
+    IceHockey,
+    Basketball,
+    Tennis,
+    Volleyball,
+    Baseball,
+    TableTennis,
+    Badminton,
+    Hockey,
+    ESports,
+    Handball,
+    Boxing,
+    Cricket,
+    Lacrosse,
+    Golf,
+    Rugby,
+    Softball,
+    Polo,
+    Kickboxing,
+    Snooker,
+    Wrestling,
+    Fencing,
+    Weightlifting,
+    Darts
+  ];
+
+  const competitions = [
+    ChampionsLeague,
+    PremierLeague,
+    LaLiga,
+    SerieA,
+    Bundesliga,
+    Ligue1,
+    EuropaLeague,
+    ConferenceLeague,
+    FACup,
+    EFLCup,
+    CopaDelRey,
+    DFBPokal,
+    CoppaItalia,
+    SupercopadeEspaña,
+    UEFASuperCup,
+    FIFAClubWorldCup,
+    MLS,
+    Brasileirão,
+    ArgentinePrimeraDivisión,
+    Eredivisie,
+    PortuguesePrimeiraLiga,
+    ScottishPremiership,
+    TurkishSüperLig,
+    GreekSuperLeague,
+    AFCChampionsLeague,
+    CAFChampionsLeague,
+    IndianSuperLeague,
+    SaudiProLeague,
+    ChineseSuperLeague,
+    WorldCup,
+    EuroCup,
+    CopaAmérica,
+    AfricanCupofNations,
+    AsianCup,
+    GoldCup,
+    NationsLeague,
+  ];
+
   const [startDate, setStartDate] = useState("2025-05-24");
   const [endDate, setEndDate] = useState("2025-05-24");
   const [selectedSport, setSelectedSport] = useState("Football");
@@ -112,9 +160,16 @@ export default function FilterPannel() {
     setSportQuery("");
   };
 
-  const filteredSports = allSports.filter((sport) =>
-    sport.toLowerCase().includes(sportQuery.toLowerCase())
+  // const filteredSports = allSports.filter((sport) =>
+  //   sport.toLowerCase().includes(sportQuery.toLowerCase())
+  // );
+
+  const filteredSports = allSports.filter(
+    (sport) =>
+      typeof sport === "string" &&
+      sport.toLowerCase().includes(sportQuery.toLowerCase())
   );
+  
 
 const [isSportOpen, setIsSportOpen] = useState(false); 
 
@@ -157,7 +212,7 @@ useEffect(() => {
       <div className="flex items-center gap-2 text-[12px] font-100 border-gray-600 pt-[8px] pl-[5px] pr-[5px] pb-[7px] justify-between w-90 bg-headerBg rounded-[5px]">
         <div className="flex gap-2 text-white">
           <Filter className="h-5 w-5" />
-          <span>Filter</span>
+          <span>{filter}</span>
         </div>
         <div>
           <button onClick={() => setIsExpanded(!isExpanded)}>
@@ -176,40 +231,42 @@ useEffect(() => {
             <div className="!m-2  !p-0 w-[95%] h-[2px] border-[#111] bg-mainBg" />
             <div className="grid grid-cols-2 gap-2 w-100 m-2">
               <div className="w-50 bg-headerbg3 rounded-lg mt-2">
-                <label className="text-xsm block pt-2 pl-2 text-hederColor2">
+                {/* <label className="text-xsm block pt-2 pl-2 text-hederColor2">
                   Start Date
-                </label>
+                </label> */}
                 <div className="relative">
-                  <input
+                  {/* <input
                     ref={startDateRef}
                     type="date"
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
                     className="w-full p-2  pt-0 rounded bg-headerbg3 text-white focus:outline-none  text-xsm"
-                  />
-                  <CalendarDays
+                  /> */}
+                  {/* <CalendarDays
                     className="absolute right-2 top-0 h-5 w-5 text-gray-400 cursor-pointer"
                     onClick={() => startDateRef.current?.showPicker()}
-                  />
+                  /> */}
+                  <CustomDatePicker title="Start Date" w="full" />
                 </div>
               </div>
 
               <div className="w-50 bg-headerbg3 rounded-lg mt-2">
-                <label className="text-xsm block pt-2 pl-2 text-hederColor2">
+                {/* <label className="text-xsm block pt-2 pl-2 text-hederColor2">
                   End Date
-                </label>
+                </label> */}
                 <div className="relative">
-                  <input
+                  {/* <input
                     ref={endDateRef}
                     type="date"
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
                     className="w-full p-2 pt-0 rounded bg-headerbg3 text-white focus:outline-none text-xsm"
-                  />
-                  <CalendarDays
+                  /> */}
+                  {/* <CalendarDays
                     className="absolute right-2 top-0 h-5 w-5 text-gray-400 cursor-pointer"
                     onClick={() => endDateRef.current?.showPicker()}
-                  />
+                  /> */}
+                  <CustomDatePicker title="End Date" w="full" />
                 </div>
               </div>
             </div>
@@ -220,7 +277,7 @@ useEffect(() => {
               <div className="w-100 m-2">
                 <div className="relative w-50 bg-headerbg3 rounded-[6px] mt-2 h-[7vh] lg:h-[8vh] md2:h-[6vh] xs3:h-[5vh] md:h-[4vh] xl:h-[6vh]">
                   <label className="text-xsm block pt-1 pl-2 text-hederColor2">
-                    Sport
+                    {Sport}
                   </label>
 
                   <div ref={sportDropdownRef}>
@@ -337,7 +394,7 @@ useEffect(() => {
               <div className="w-100 m-2">
                 <div className="relative w-50 bg-headerbg3 rounded-[6px] mt-2 h-[7vh] lg:h-[8vh] md2:h-[6vh] xs3:h-[5vh] md:h-[4vh] xl:h-[6vh]">
                   <label className="text-xsm block pt-1 pl-2 text-hederColor2">
-                    Competition
+                    {Competition}
                   </label>
 
                   <div ref={competitionDropdownRef}>
@@ -453,10 +510,10 @@ useEffect(() => {
                 onClick={resetFilters}
                 className="w-[95%] md2:w-[98%] p-2 border border-gray-500 rounded text-white text-xsm"
               >
-                RESET
+                {Reset}
               </button>
               <button className="w-[95%] md2:w-[98%]  p-2 bg-sky-500 hover:bg-sky-600 rounded text-black mb-2 text-xsm">
-                SHOW
+                {Show}
               </button>
             </div>
           </div>

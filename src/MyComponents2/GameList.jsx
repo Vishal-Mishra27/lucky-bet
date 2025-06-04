@@ -1,66 +1,94 @@
 import React, { useState } from "react";
 import "./GameList.css"; 
+import { useTranslation } from "react-i18next";
+import "../i18";
 
-const games = [
-  "All",
-  "Football",
-  "Basketball",
-  "Tennis",
-  "Volleyball",
-  "Ice Hockey",
-  "Handball",
-  "Baseball",
-  "Table Tennis",
-  "Cricket",
-  "Rugby",
-  "Golf",
-  "Boxing",
-  "MMA",
-  "Wrestling",
-  "Fencing",
-  "Snooker",
-  "Hockey",
-  "Badminton",
-  "E-Sports",
-];
 
-const gameIcons = {
-  All: "🎮",
-  Football: "⚽",
-  Basketball: "🏀",
-  Tennis: "🎾",
-  Volleyball: "🏐",
-  "Ice Hockey": "🏒",
-  Handball: "🤾",
-  Baseball: "⚾",
-  "Table Tennis": "🏓",
-  Cricket: "🏏",
-  Rugby: "🏉",
-  Golf: "🏌️",
-  Boxing: "🥊",
-  MMA: "🤼",
-  Wrestling: "🤼‍♂️",
-  Fencing: "🤺",
-  Snooker: "🎱",
-  Hockey: "🏑",
-  Badminton: "🏸",
-  "E-Sports": "🕹️",
-};
   
   
 
 const GameList = () => {
+  const { t, i18n } = useTranslation();
+
+  const {
+    Football,
+    Basketball,
+    Tennis,
+    Volleyball,
+    IceHockey,
+    Baseball,
+    TableTennis,
+    Badminton,
+    Cricket,
+    Rugby,
+    Golf,
+    Boxing,
+    MMA,
+    Wrestling,
+    Fencing,
+    Snooker,
+    Hockey,
+    ESports,
+    Handball,
+    All,
+  } = t("GameList");
+  const { Context4, Context5, Context6 } = t("Context");
+  const games = [
+    All,
+    Football,
+    Basketball,
+    Tennis,
+    Volleyball,
+    IceHockey,
+    Handball,
+    Baseball,
+    TableTennis,
+    Cricket,
+    Rugby,
+    Golf,
+    Boxing,
+    MMA,
+    Wrestling,
+    Fencing,
+    Snooker,
+    Hockey,
+    Badminton,
+    ESports,
+  ];
+
+  const gameIcons = {
+    All: "🎮",
+    Football: "⚽",
+    Basketball: "🏀",
+    Tennis: "🎾",
+    Volleyball: "🏐",
+    "Ice Hockey": "🏒",
+    Handball: "🤾",
+    Baseball: "⚾",
+    "Table Tennis": "🏓",
+    Cricket: "🏏",
+    Rugby: "🏉",
+    Golf: "🏌️",
+    Boxing: "🥊",
+    MMA: "🤼",
+    Wrestling: "🤼‍♂️",
+    Fencing: "🤺",
+    Snooker: "🎱",
+    Hockey: "🏑",
+    Badminton: "🏸",
+    "E-Sports": "🕹️",
+  };
   const [isOpen, setIsOpen] = useState(false);
   const [selectedGames, setSelectedGames] = useState(["Football"]);
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
 
   const handleSelect = (game) => {
-    if (game === "All") {
+    if (game === "All" || game === "الجميع") {
       if (selectedGames.length === games.length - 1) {
         setSelectedGames([]);
       } else {
-        setSelectedGames(games.filter((g) => g !== "All"));
+        setSelectedGames(games.filter((g) => g !== "All" && g !== "الجميع"));
       }
     } else {
       setSelectedGames((prev) =>
@@ -69,19 +97,22 @@ const GameList = () => {
     }
   };
 
+  
+  
+
   const isSelected = (game) => selectedGames.includes(game);
 
   return (
     <div className="dropdown-container">
       <div onClick={toggleDropdown} className="dropdown-header">
-        <label className="dropdown-label">Sport</label>
+        <label className="dropdown-label">{Context6}</label>
         <div className="dropdown-selected">
           <span className="dropdown-text">
             {selectedGames.length === games.length - 1
-              ? "All games are selected"
+              ? Context4
               : selectedGames.length > 0
               ? selectedGames.join(", ")
-              : "Select"}
+              : Context5}
           </span>
           <span className="dropdown-arrow">&#9662;</span>
         </div>
@@ -103,7 +134,7 @@ const GameList = () => {
                 type="checkbox"
                 readOnly
                 checked={
-                  game === "All"
+                  game === All
                     ? selectedGames.length === games.length - 1
                     : isSelected(game)
                 }

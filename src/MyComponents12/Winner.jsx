@@ -1,47 +1,54 @@
 import React from 'react';
 import DropdownSection from './DropdownSection';
+import { GiEuropeanFlag } from "react-icons/gi";
+import { TbWorld } from "react-icons/tb";
+import { useTranslation } from "react-i18next";
+import "../i18";
 const Winner = () => {
+    const { t, i18n } = useTranslation();
+    const {
+      Europe,
+      UEFANationsLeague,
+      UEFANationsLeagueOutright,
+      UEFAChampionsLeague,
+      UEFAChampionsLeagueWomen,
+      World,
+      FIFAClubWorldCup,
+      FIFAU20WorlFIFAClubWorldCup,
+      WorldCupEuropeQualification,
+      England,
+      PremierLeague,
+      PremierLeagueOutright,
+      Championship,
+    } = t("SportsTable");
   const items1 = [
-    { title: 'UEFA Nations League', count: 2 },
-    { title: 'UEFA Nations League. Outright', count: 2 },
-    { title: 'UEFA Champions League', count: 2 },
-    { title: 'UEFA Champions League - Women', count: 2 },
+    { title: UEFANationsLeague, count: 2 },
+    { title: UEFANationsLeagueOutright, count: 2 },
+    { title: UEFAChampionsLeague, count: 2 },
+    { title: UEFAChampionsLeagueWomen, count: 2 },
   ];
 
   const items2 = [
-    { title: 'FIFA Club World Cup', count: 5 },
-    { title: 'FIFA U20 WorlFIFA Club World Cup.', count: 1 },
-    { title: 'World Cup Europe Qualification', count: 3 },
+    { title: FIFAClubWorldCup, count: 5 },
+    { title: FIFAU20WorlFIFAClubWorldCup, count: 1 },
+    { title: WorldCupEuropeQualification, count: 3 },
   ];
 
   const items3 = [
-    { title: 'Premier League', count: 5 },
-    { title: 'Premier League. Outright', count: 1 },
-    { title: 'Championship', count: 3 },
-  ];
-
-  const items4 = [
-    { title: 'FIFA World Cup', count: 5 },
-    { title: 'FIFA U20 World Cup', count: 1 },
-    { title: 'FIFA Women\'s World Cup', count: 3 },
-  ];
-
-  const items5 = [
-    { title: 'FIFA World Cup', count: 5 },
-    { title: 'FIFA U20 World Cup', count: 1 },
-    { title: 'FIFA Women\'s World Cup', count: 3 },
+    { title: PremierLeague, count: 5 },
+    { title: PremierLeagueOutright, count: 1 },
+    { title: Championship, count: 3 },
   ];
 
   return (
     <div className="space-y-2">
-      <DropdownSection title="Europe" count={7} items={items1} />
-      <DropdownSection title="World" count={44} items={items2} />
-      <DropdownSection title="England" count={20} items={items3} />
-      <DropdownSection title="Germany" count={5} items={items4} />
-      <DropdownSection title="Spain" count={56} items={items5} />
+      <DropdownSection title={Europe} count={7} items={items1} />
+      <DropdownSection title={World} count={44} items={items2} />
+      <DropdownSection title={England} count={20} items={items3} />
     </div>
   );
 };
+
 
 export default Winner;
 

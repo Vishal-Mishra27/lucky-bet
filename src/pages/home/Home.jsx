@@ -29,6 +29,10 @@ import GameGallery from "../../MyComponents4/GameGallery";
 import AllGames from "../../MyComponents5/AllGames";
 import Table2 from "../../MyComponents2/Table2";
 
+import { useTranslation } from "react-i18next";
+import "../../i18";
+
+
 
 
 const gameCategoryTabs = [
@@ -152,66 +156,90 @@ const cards = [
     { img: liveCasino, name: "LIVE CASINO" },
     { img: casino, name: "CASINO" },
 ];
-const matches = [
-    {
+
+function Home() {
+  const { t, i18n } = useTranslation();
+  const {
+    FEATUREDGAMES,
+    UPCOMINGMATCHES,
+    CasinoGames,
+    LivecasinoGames,
+    Games,
+    More,
+  } = t("Heading");
+  const { WINNER, HANDICAP, TOTALS, W1, X, W2 } = t("Table");
+  const { Context1 } = t("Context");
+  const {
+    OmanClub,
+    AlKhabourahSC,
+    AlUrooba,
+    AlWahdaAbuDhabi,
+    AlSharjahSC,
+    AjmanClub,
+    AlWehdatSCAmman,
+    MoghayerAlSarhan,
+    Kd,
+    dk,
+  } = t("HomePageTeam");
+    const navigate = useNavigate();
+    const matches = [
+      {
         id: 1,
         date: "22.04.25, 19:20",
-        team1: "Oman Club",
-        team2: "Al-Khabourah SC",
+        team1: OmanClub,
+        team2: AlKhabourahSC,
         odds: { w1: "2.36", x: "2.99", w2: "2.92" },
-        locked: true
-    },
-    {
+        locked: true,
+      },
+      {
         id: 2,
         date: "22.04.25, 19:25",
-        team1: "Al Urooba",
-        team2: "Al Wahda Abu Dhabi",
+        team1: AlUrooba,
+        team2: AlWahdaAbuDhabi,
         odds: { w1: "8.40", x: "5.10", w2: "1.27" },
-        locked: false
-    },
-    {
+        locked: false,
+      },
+      {
         id: 3,
         date: "22.04.25, 19:25",
-        team1: "Al Sharjah SC",
-        team2: "Ajman Club",
+        team1: AlSharjahSC,
+        team2: AjmanClub,
         odds: { w1: "1.41", x: "4.40", w2: "6.20" },
-        locked: false
-    },
-    {
+        locked: false,
+      },
+      {
         id: 4,
         date: "22.04.25, 19:30",
-        team1: "Al Wehdat SC Amman",
-        team2: "Moghayer Al Sarhan",
+        team1: AlWehdatSCAmman,
+        team2: MoghayerAlSarhan,
         odds: { w1: "1.08", x: "7.80", w2: "21.00" },
-        locked: false
-    },
-    {
+        locked: false,
+      },
+      {
         id: 5,
         date: "21.04.25, 16:30",
-        team1: "Al Wehdat SC Amman",
-        team2: "Moghayer Al Sarhan",
+        team1: AlWehdatSCAmman,
+        team2: MoghayerAlSarhan,
         odds: { w1: "1.08", x: "7.80", w2: "21.00" },
-        locked: false
-    },
-    {
+        locked: false,
+      },
+      {
         id: 6,
         date: "21.04.25, 13:30",
-        team1: "Al Wehdat SC Amman",
-        team2: "Moghayer Al Sarhan",
+        team1: AlWehdatSCAmman,
+        team2: MoghayerAlSarhan,
         odds: { w1: "1.08", x: "7.80", w2: "21.00" },
-        locked: false
-    },
-    {
+        locked: false,
+      },
+      {
         id: 7,
         date: "21.04.25, 13:30",
-        team1: "Kd",
-        team2: "dk",
+        team1: Kd,
+        team2: dk,
         odds: { w1: "1.08", x: "7.80", w2: "21.00" },
-        locked: false
-    },
-];
-function Home() {
-    const navigate = useNavigate();
+        locked: false,
+      },
+    ];
     
   const goToLivePage = (route) => {
     console.log("name is ",route)
@@ -446,9 +474,9 @@ function Home() {
           </div> */}
           {/* featured games */}
           <div className="text-xsm p-2">
-            <h1 className="font-semibold text-textGray1">FEATURED GAMES</h1>
+            <h1 className="font-semibold text-textGray1">{FEATUREDGAMES}</h1>
             <div className="h-28 text-xsm w-full flex items-center font- text-textGray1 justify-center">
-              There are no featured games at the moment
+              {Context1}
             </div>
           </div>
           {/* trending games */}
@@ -488,10 +516,10 @@ function Home() {
             <div className="">
               <div className="flex items-center justify-between">
                 <h1 className="font-semibold text-xsm text-textGray1">
-                  UPCOMING MATCHES
+                  {UPCOMINGMATCHES}
                 </h1>
                 <button className="text-hederColor2 flex items-center text-xsm">
-                  More <MdKeyboardArrowRight size={25} />{" "}
+                  {More} <MdKeyboardArrowRight size={25} />{" "}
                 </button>
               </div>
               <div className="w-full md:flex items-center justify-between gap-2 mt-3">
@@ -506,7 +534,7 @@ function Home() {
                           : "text-bg2 bg-white"
                       } text-xs transition`}
                     >
-                      {tab.name}M
+                      {tab.name}
                     </button>
                   ))}
                 </div>
@@ -551,7 +579,7 @@ function Home() {
                           : "text-bg2 bg-white"
                       } text-xs transition`}
                     >
-                      {tab.name}M
+                      {tab.name}
                     </button>
                   ))}
                 </div>
@@ -562,7 +590,7 @@ function Home() {
                   <div className="flex items-center gap-[1px] w-full  ">
                     <div className="w-[150px] sm:w-[200px] py-[6px] bg-[#2E374B] text-xsm flex items-center justify-between gap-1 flex-shrink-0">
                       <SelectBox
-                        options={["WINNER", "HANDICAP", "TOTALS"]}
+                        options={[WINNER, HANDICAP, TOTALS]}
                         label="Winner"
                         width="w-[150px] sm:w-[171px]"
                         setSelectedData={setSeletedData}
@@ -576,13 +604,13 @@ function Home() {
                   </div>
                   <div className="flex items-center gap-[1px] -mr-5 text-yellow-400 text-xsm">
                     <div className=" flex items-center bg-[#565F6E]  py-[6px] justify-center w-[100px]">
-                      W1{" "}
+                      {W1}
                     </div>
                     <div className=" flex items-center bg-[#565F6E]  py-[6px] justify-center w-[100px]">
-                      X
+                      {X}
                     </div>
                     <div className=" flex items-center bg-[#565F6E]  py-[6px] justify-center w-[100px]">
-                      W2{" "}
+                      {W2}
                     </div>
                   </div>
                 </div>
@@ -592,7 +620,6 @@ function Home() {
                       key={match.id}
                       className="group flex w-full items-center gap-[1px] rounded-md hide-scrollbar overflow-x-auto sm:overflow-x-hidden flex-shrink-0"
                     >
-                
                       <div className="flex items-center w-full bg-[#222D42] group-hover:bg-[#565F6E]">
                         <div className="w-[150px] sm:w-[200px] px-2 py-2 text-xsm flex items-center gap-1 flex-shrink-0">
                           <MdOutlineTimer size={16} /> {match.date}
@@ -616,7 +643,7 @@ function Home() {
                           </div>
                         </div>
                       </div>
-                
+
                       <div className="flex items-center gap-[1px] -mr-5 text-[#ffd700] text-xsm">
                         {[match.odds.w1, match.odds.x, match.odds.w2].map(
                           (odds, idx) => (
@@ -638,7 +665,6 @@ function Home() {
                           )
                         )}
                       </div>
-                   
                     </div>
                   ))}
                 </div>
@@ -650,13 +676,13 @@ function Home() {
           <div className="mb-1">
             <div className="flex items-center justify-between">
               <h1 className="font-semibold text-xsm text-textGray1 uppercase">
-                Casino Games
+                {CasinoGames}
               </h1>
               <button
                 className="text-hederColor2 flex items-center text-xsm"
                 onClick={() => navigate("/")}
               >
-                More <MdKeyboardArrowRight size={25} />{" "}
+                {More} <MdKeyboardArrowRight size={25} />{" "}
               </button>
             </div>
             <div className="w-full flex flex-wrap items-center gap-3 mt-0">
@@ -670,13 +696,13 @@ function Home() {
           <div className="mb-1">
             <div className="flex items-center justify-between">
               <h1 className="font-semibold text-xsm text-textGray1 uppercase">
-                Live casino Games
+                {LivecasinoGames}
               </h1>
               <button
                 className="text-hederColor2 flex items-center text-xsm"
                 onClick={() => navigate("/livecasino")}
               >
-                More <MdKeyboardArrowRight size={25} />{" "}
+                {More} <MdKeyboardArrowRight size={25} />{" "}
               </button>
             </div>
 
@@ -688,17 +714,17 @@ function Home() {
           <div className="mb-1">
             <div className="flex items-center justify-between">
               <h1 className="font-semibold text-xsm text-textGray1 uppercase">
-                Games
+                {Games}
               </h1>
               <button
                 className="text-hederColor2 flex items-center text-xsm"
                 onClick={() => navigate("/gamepage")}
               >
-                More <MdKeyboardArrowRight size={25} />{" "}
+                {More} <MdKeyboardArrowRight size={25} />{" "}
               </button>
             </div>
             <div className="w-full flex flex-wrap items-center gap-3 mt-0">
-              <AllGames maxItems={2} isHome={isHome}/>
+              <AllGames maxItems={2} isHome={isHome} />
             </div>
           </div>
           {/* <div className="flex items-center justify-end gap-2 px-28">

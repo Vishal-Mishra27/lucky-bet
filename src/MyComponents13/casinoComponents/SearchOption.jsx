@@ -18,9 +18,15 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import { MdOutlineWatchLater } from "react-icons/md";
+import { useTranslation } from "react-i18next";
+
 
 
 export default function SearchOption() {
+    const { t, i18n } = useTranslation();
+    const { AllProvider } = t("Casino");
+    const { Context3 } = t("Context");
+
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
 
@@ -56,7 +62,7 @@ export default function SearchOption() {
                 style={{ border: "solid 1px rgba(255, 255, 255 , .6)" }}
               >
                 <MdOutlineApproval className="text-[18px]" />
-                <p className="text-[12px]">All Provider</p>
+                <p className="text-[12px]">{AllProvider}</p>
               </div>
             </a>
           </div>
@@ -75,7 +81,7 @@ export default function SearchOption() {
                 className="search-input"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search for a competition or team"
+                placeholder={Context3}
               />
             </div>
 

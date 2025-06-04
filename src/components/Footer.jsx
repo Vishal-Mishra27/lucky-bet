@@ -114,6 +114,8 @@
 // export default Footer;
 
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import "../i18";
 
 const countries = [
   {
@@ -139,6 +141,9 @@ const countries = [
 ];
 
 function Footer() {
+  const { t, i18n } = useTranslation();
+  const { ABOUT, HELP, ResponsibleGaming, FAQs, PAYMENTS, LUCKYBET } =
+    t("Footer");
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -190,23 +195,23 @@ function Footer() {
       {/* Footer Sections */}
       <div className="text-center space-y-6">
         <div>
-          <h4 className="text-[#adb1b9] text-[14px] font-medium">ABOUT</h4>
+          <h4 className="text-[#adb1b9] text-[14px] font-medium">{ABOUT}</h4>
           <p className="text-gray mt-2 text-wrap">
             {/* We are the most trusted betting platform. */}
           </p>
         </div>
 
         <div>
-          <h4 className="text-[#adb1b9] text-[14px] font-medium">HELP</h4>
+          <h4 className="text-[#adb1b9] text-[14px] font-medium">{HELP}</h4>
           <div className="flex justify-center items-center gap-2 mt-2 text-[12px] text-[#9aa4af]">
-            <a href="#">Responsible Gaming</a>
+            <a href="#">{ResponsibleGaming}</a>
             <span>|</span>
-            <a href="#">FAQs</a>
+            <a href="#">{FAQs}</a>
           </div>
         </div>
         <div className="border-t border-white/10 my-6 mx-4 sm:mx-10" />
         <div>
-          <h4 className="text-[#adb1b9] text-[14px] font-medium">PAYMENTS</h4>
+          <h4 className="text-[#adb1b9] text-[14px] font-medium">{PAYMENTS}</h4>
         </div>
       </div>
 
@@ -218,7 +223,7 @@ function Footer() {
         <span className="text-[#e6007e] border border-[#e6007e] rounded-full px-2 py-0.5 text-xs font-bold">
           18+
         </span>
-        <span className="text-[14px] text-[#9aa4af]">2022 - 2025 LUCKYBET</span>
+        <span className="text-[14px] text-[#9aa4af]">2022 - 2025 {LUCKYBET}</span>
       </div>
     </footer>
   );

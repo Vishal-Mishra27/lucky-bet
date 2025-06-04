@@ -12,14 +12,16 @@ export default {
       // ----
       md2: "768px",
       xs4: "425px",
+      l: "426px",
       xs3: "321px",
+      xs5: "319px",
       sm3: "468px",
-      x5: '775px',     // 5 images
-      x6: '936px',     // 6 images
-      x7: '1063px',    // 7 images
-      x8: '1248px',    // 8 images
-      x9: '1359px', // upper bound for 8 images
-      
+      x5: "775px", // 5 images
+      x6: "936px", // 6 images
+      x7: "1063px", // 7 images
+      x8: "1248px", // 8 images
+      x9: "1359px", // upper bound for 8 images
+
       // ----
       lg: "1024px",
       xl: "1280px",
@@ -81,7 +83,10 @@ export default {
         headerbg3: "#464f61",
         headerBgSelected: "#333d50",
         headerBgSelected2: "#172238",
-        borderColor:"#2b3549",
+        borderColor: "#2b3549",
+        slectedProvider: "#152036",
+        slectedProviderText: "#d0d2d7",
+
         // ----------------------------------
         yellow: "#e5ce00",
         // pink: "#ad005c",

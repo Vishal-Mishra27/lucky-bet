@@ -26,7 +26,7 @@ const SliderBar = () => {
       <img
         src={images[current]}
         alt={`Slide ${current + 1}`}
-        className="w-full h-[200px] sm:h-[300px] object-fill transition duration-500 p-3 rounded-[5px] md:h-[50vh]"
+        className="w-full h-[200px] sm:h-[300px] object-fill transition duration-500 p-3 rounded-[5px] md:h-[50vh] lg:h-[60vh]"
       />
 
       {/* Slide Count in top-right corner */}

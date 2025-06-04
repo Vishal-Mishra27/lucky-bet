@@ -156,7 +156,7 @@ body { /* Optional: set body font if not set globally */
 
 .market-dropdown-list li.active {
   /* background-color: var(--accent-color); */
-  background-color:rgb(22, 99, 132);
+  /* background-color:rgb(22, 99, 132); */
   color: white;
   font-weight: 500;
 }
@@ -464,19 +464,19 @@ body { /* Optional: set body font if not set globally */
 /* --------------------------------------------- */
 .market-league-separator {
   height: 5px;
-  background-color: #000;
+  background-color: #000C24;
   width: 100%;
   margin: 0;
-  border-top: 1px solid #111; /* optional subtle border */
-  border-bottom: 1px solid #111;
+  border-top: 1px solid #000C24; /* optional subtle border */
+  border-bottom: 1px solid #000C24;
 }
 .market-league-separator-2 {
-  height: 3vh;
-  background-color: #000;
-  width: 0.55%;
+  height: 19px;
+  background-color: #000C24;
+  width: 1px;
   margin: 0;
-  border-top: 1px solid #111; /* optional subtle border */
-  border-bottom: 1px solid #111;
+  border-top: 1px solid #000C24; /* optional subtle border */
+  border-bottom: 1px solid #000C24;
 }
 
 

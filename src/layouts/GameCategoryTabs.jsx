@@ -1,5 +1,8 @@
 
 import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import '../i18'
+
 import { RiRadioButtonLine } from "react-icons/ri";
 import { useState } from "react";
 import Login from "../features/auth/Login";
@@ -8,65 +11,88 @@ import { MdOutlineCasino } from "react-icons/md";
 import { GiTrebuchet } from "react-icons/gi";
 
 const GameCategoryTabs = () => {
+  const { t, i18n } = useTranslation();
+  const {
+    Live,
+    Sports,
+    Casino,
+    LIVECASINO,
+    Games,
+    ESPORT,
+    VIRTUALSPORTS,
+    TREBUCHET,
+    EventView,
+    LiveCalendar,
+    Result,
+    Home,
+    Tournaments,
+    Jackpots,
+  } = t("GameHeader");
+  
   const navigate = useNavigate();
   const location = useLocation();
   const gameCategoryTabs = [
     {
       icon: <RiRadioButtonLine size={20} />,
-      name: "LIVE",
+      name: Live,
       isTop: false,
       route: "live/livepage",
       hoverMenu: [
-        { label: "Event View", path: "livepage" },
-        { label: "Live Calendar", path: "liveCalender" },
-        { label: "Result", path: "result" },
+        { label: EventView, path: "livepage" },
+        { label: LiveCalendar, path: "liveCalender" },
+        { label: Result, path: "result" },
       ],
     },
     {
       icon: <IoFootball size={20} />,
-      name: "Sports",
+      name: Sports,
       isTop: false,
       route: "sports",
       hoverMenu: [
-        { label: "Event View", path: "livepage" },
-        { label: "Live Calendar", path: "liveCalender" },
-        { label: "Result", path: "result" },
+        { label: EventView, path: "livepage" },
+        { label: LiveCalendar, path: "liveCalender" },
+        { label: Result, path: "result" },
       ],
     },
     {
       icon: <IoFootball size={20} />,
-      name: "Casino",
+      name: Casino,
       isTop: false,
       route: "casino",
-      hoverMenu: ["Home", "Tournaments", "Jackpots"],
+      // hoverMenu: ["Home", "Tournaments", "Jackpots"],
+      hoverMenu: [
+        { label: Home, path: "home" },
+        { label: Tournaments, path: "Tournaments" },
+        { label: Jackpots, path: "jackpots" },
+      ],
     },
     {
       icon: <MdOutlineCasino size={20} />,
-      name: "LIVE CASINO",
+      name: LIVECASINO,
       isTop: false,
       route: "livecasino",
     },
     {
       icon: <IoFootball size={20} />,
-      name: "Games",
+      name: Games,
       isTop: false,
       route: "gamepage",
     },
     {
       icon: <MdOutlineCasino size={20} />,
-      name: "E-SPORT",
+      name: ESPORT,
       isTop: true,
       route: "esports",
     },
     {
       icon: <IoGameController size={20} />,
-      name: "VIRTUAL SPORTS",
+      name: VIRTUALSPORTS,
       isTop: false,
       route: "virtualsports",
     },
     {
       icon: <GiTrebuchet size={20} />,
-      name: "TREBUCHET",
+      name: TREBUCHET,
       isTop: false,
     },
   ];
@@ -77,7 +103,7 @@ const GameCategoryTabs = () => {
     <div className="w-full px-0">
       {isOpenLogin && <Login setIsOpenLogin={setIsOpenLogin} />}
 
-      <div className="w-full overflow-visible rounded-md flex items-center h-12 hide-scrollbar">
+      <div className="w-full overflow-x-auto rounded-md flex items-center min-h-12 relative hide-scrollbar z-10">
         <div className="flex pt-1 h-full items-center hide-scrollbar whitespace-nowrap gap-2">
           {gameCategoryTabs.map((tab) => {
             const currentPath = location.pathname.split("/")[1];
@@ -116,7 +142,7 @@ const GameCategoryTabs = () => {
 
                 {/* Hover Menu */}
                 {tab.hoverMenu && (
-                  <div className="absolute top-full left-0 mt-1 hidden group-hover:flex flex-col bg-gray-800 text-white text-xs rounded shadow-lg z-20 w-[235px] h-[110px] bg-[#000C24] px-[16px] gap-1">
+                  <div className="fixed  hidden group-hover:flex z-10 flex-col bg-gray-800 text-white text-xs rounded shadow-lg  w-[235px] h-[110px] bg-[#000C24] px-[16px] gap-1">
                     {tab.hoverMenu.map((item, index) => {
                       const label =
                         typeof item === "string" ? item : item.label;

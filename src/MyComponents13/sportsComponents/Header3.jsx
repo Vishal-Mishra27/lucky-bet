@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import './Header3.css'; 
+import { useTranslation } from "react-i18next";
+import "../../i18";
+
 
 export default function Header3() {
-  const menuItems = [
-    {
-      id: "1",
-      name: "Live",
-    },
-    {
-      id: "2",
-      name: "Finished",
-      link: "/liveCalender",
-    },
-  ];
+    const { t, i18n } = useTranslation();
+          const { LIVE, FINISHED } = t("Result");
+          const menuItems = [
+            {
+              id: "1",
+              name: LIVE,
+            },
+            {
+              id: "2",
+              name: FINISHED,
+              link: "/liveCalender",
+            },
+          ];
 
   const [activeItem, setActiveItem] = useState(menuItems[0].id); 
 

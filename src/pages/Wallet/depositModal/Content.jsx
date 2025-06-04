@@ -73,10 +73,15 @@ const Content = ({ section, setIsDepositModal }) => {
   };
 
   return (
-    <div className="flex-1 bg-mainBg">
-      <div className="flex items-center justify-between bg-bg2 p-3">
-        <h1 className="text-sm">{section}</h1>
-        <h1 onClick={() => setIsDepositModal(false)} className="text-2xl text-lightGray hover:text-white"><RxCross2 /></h1>
+    <div className="flex-1 bg-mainBg min-h-screen">
+      <div className="flex items-center justify-between bg-bg2 p-2 pl-20 x7:pl-1 sticky top-0" style={{"z-index": "100"}}>
+        <h1 className="text-sm ">{section}</h1>
+        <h1
+          onClick={() => setIsDepositModal(false)}
+          className="text-2xl text-lightGray hover:text-white"
+        >
+          <RxCross2 />
+        </h1>
       </div>
       {renderContent()}
     </div>

@@ -19,7 +19,7 @@ export default function HeaderTabs() {
   };
 
   return (
-    <div className="flex bg-[#0d182f] text-[#c5c9ca] text-xs font-roboto uppercase shadow-sm sticky top-0 z-50 border-b border-[#1F2937]">
+    <div className="flex bg-[#0d182f] text-[#c5c9ca] text-xs font-roboto uppercase shadow-sm sticky top-0  border-b border-[#1F2937]">
       {tabs.map((tab) => (
         <button
           key={tab.label}

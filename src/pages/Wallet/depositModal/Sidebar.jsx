@@ -13,7 +13,10 @@ import { useNavigate } from "react-router-dom";
 import { LuHistory } from "react-icons/lu";
 import { TfiEmail } from "react-icons/tfi";
 
-const Sidebar = ({ setIsDepositModal, toggleEye, setToggleEye, setActiveSection, activeSection, fetchProfileDetails, myDetails }) => {
+const Sidebar = ({ setIsDepositModal, toggleEye, setToggleEye, setActiveSection, activeSection, fetchProfileDetails, myDetails,
+
+  
+ }) => {
   const userId = localStorage.getItem('userId');
   const sections = {
     'MY PROFILE': ['Personal Details', 'Change Password'],
@@ -29,7 +32,7 @@ const Sidebar = ({ setIsDepositModal, toggleEye, setToggleEye, setActiveSection,
     'BONUSES': <PiHandWithdrawFill className="text-[#D4D6DA]" size={25} />,
     'MESSAGES': <TfiEmail className="text-[#D4D6DA]" size={22} />
   };
-  const [openDropdown, setOpenDropdown] = useState(null);
+  const [openDropdown, setOpenDropdown] = useState("BALANCE MANAGEMENT");
   const [isPromoCode, setIsPromoCode] = useState(null);
 
   const handleToggle = (title) => {
@@ -49,9 +52,11 @@ const Sidebar = ({ setIsDepositModal, toggleEye, setToggleEye, setActiveSection,
     setIsPromoCode(value)
   }
 
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
+
   // console.log("myDetails", myDetails)
   return (
-    <div className="w-80 overflow-auto hide-scrollbar bg-bg2 border-r border-gray p-2">
+    <div className="w-100 overflow-auto hide-scrollbar bg-bg2 border-r border-gray p-2">
       {/* profile details */}
       <div className="flex items-center gap-2">
         <div className="w-8 h-8 flex items-center justify-center bg-[#767C89] text-bg2 capitalize rounded-full text-[12px]">{myDetails?.data?.username?.slice(0, 2)}</div>

@@ -11,11 +11,30 @@ import SearchOption from "../MyComponents13/casinoComponents/SearchOption";
 import Winner from "./Winner";
 import { IoTrophy } from "react-icons/io5";
 import Login from "../../src/features/auth/Login"
-
+import SportsSearchOption from "../MyComponents13/sportsComponents/SportsSearchOption";
+import { useTranslation } from "react-i18next";
+import "../i18";
 
 
 const Sports = () => {
-
+  const { t, i18n } = useTranslation();
+  const { MyTeams, UpcomingMatches, PopularMatches, PopularCompetitions } =
+    t("Sports");
+    const {
+      Europe,
+      UEFANationsLeague,
+      UEFANationsLeagueOutright,
+      UEFAChampionsLeague,
+      UEFAChampionsLeagueWomen,
+      World,
+      FIFAClubWorldCup,
+      FIFAU20WorlFIFAClubWorldCup,
+      WorldCupEuropeQualification,
+      England,
+      PremierLeague,
+      PremierLeagueOutright,
+      Championship
+    } = t("SportsTable");
   const [activeTab, setActiveTab] = useState(null);
   const [isOpenLogin, setIsOpenLogin] = useState(false);
 
@@ -26,7 +45,7 @@ const Sports = () => {
       {isOpenLogin && <Login setIsOpenLogin={setIsOpenLogin} />}
       <div className="mt-[10px] p-[7px]">
         <h3 className="text-[#ffffff] mb-[5px] text-[15px] leading-[16px] font-[400] uppercase">
-          My Teams
+          {MyTeams}
         </h3>
         <div className="w-full flex items-center">
           <div className="w-[36px] h-[46px]">
@@ -98,7 +117,6 @@ const Sports = () => {
           </div>
         </div>
       </div>
-
       <div className="flex overflow-x-auto whitespace-nowrap space-x-3 mt-[10px] p-[7px] scrollbar-hide">
         {/* Upcoming Matches */}
         <button
@@ -114,7 +132,7 @@ const Sports = () => {
               activeTab === "upcoming" ? "text-black" : "text-[#0097b7]"
             }`}
           />
-          <span>Upcoming Matches</span>
+          <span>{UpcomingMatches}</span>
         </button>
 
         {/* Popular Matches */}
@@ -131,7 +149,7 @@ const Sports = () => {
               activeTab === "popularMatches" ? "text-black" : "text-[#0097b7]"
             }`}
           />
-          <span>Popular Matches</span>
+          <span>{PopularMatches}</span>
         </button>
 
         {/* Popular Competitions */}
@@ -150,14 +168,12 @@ const Sports = () => {
                 : "text-[#0097b7]"
             }`}
           />
-          <span>Popular Competitions</span>
+          <span>{PopularCompetitions}</span>
         </button>
       </div>
-
-      <SearchOption />
-
+      {/* <SearchOption /> */}
+      <SportsSearchOption />
       <Game />
-
       <Winner />
     </div>
   );

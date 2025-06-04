@@ -23,6 +23,8 @@ import {
   faGamepad,
   faCircleQuestion,
 } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
+import "../i18";
 
 const gameIcons = {
   All: faGamepad,
@@ -48,219 +50,233 @@ const gameIcons = {
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const marketOptions = [
-  { id: "WINNER", label: "WINNER", headers: ["W1", "X", "W2"] },
-  { id: "HANDICAP", label: "HANDICAP", headers: ["HOME", "AWAY"] },
-  { id: "TOTAL", label: "TOTAL", headers: ["OVER", "UNDER"] },
-];
 
-const sampleMatchData = {
-  1: [
-    {
-      id: "match1",
-      team1: "Izumrud-pro",
-      team2: "Djoker-pro",
-      score1: "0",
-      score2: "0",
-      gameLogo: faVolleyball,
-      gameLogoColor: "green", // Red
-      timeLogo: <FaStopwatch />,
-      time2: "00:00 ",
-      time: "0:0, (0:0) 3'",
-      odds: [1.56, 3.23, 6.80],
-       // flags for each odds box
-      isLive: true,
-      isLocked: false,
-      lockedValue: "+7",
-    },
-  ],
-  2: [
-    {
-      id: "match2",
-      team1: "Ethiopian Coffee",
-      team2: "Saint George",
-      score1: "1",
-      score2: "1",
-      gameLogo: faVolleyball,
-      gameLogoColor: "green",
-      timeLogo: <FaStopwatch />,
-      time2: "00:00 ",
-      time: "2nd Half | 7:5, (4:2) 5'",
-      odds: ["1.66", "3.01", "6.00"],
-
-      isLive: true,
-      isLocked: false,
-      lockedValue: "+40",
-    },
-  ],
-  3: [
-    {
-      id: "match3",
-      team1: "Indonesia Coffee",
-      team2: "Saint George",
-      score1: "10",
-      score2: "5",
-      gameLogo: faVolleyball,
-      gameLogoColor: "green",
-      timeLogo: <FaStopwatch />,
-      time2: "00:00 ",
-      time: "FT ",
-      odds: ["2.00", "2.89", "3.94"],
-    
-      isLive: false,
-      isLocked: false,
-      lockedValue: "+55",
-    },
-  ],
-  4: [
-    {
-      id: "match4",
-      team1: "Nepal Coffee",
-      team2: "Saint George",
-      score1: "10",
-      score2: "5",
-      gameLogo: faBasketball,
-      gameLogoColor: "orange",
-      timeLogo: <FaStopwatch />,
-      time2: "00:00 ",
-      time: "FT ",
-      odds: ["1.35", "23.00", "3.10"],
-    
-      isLive: false,
-      isLocked: false,
-      lockedValue: "+15",
-    },
-  ],
-  5: [
-    {
-      id: "match5",
-      team1: "Indonesia Coffee",
-      team2: "Saint George",
-      score1: "10",
-      score2: "5",
-      gameLogo: faVolleyball,
-      gameLogoColor: "red",
-      timeLogo: <FaStopwatch />,
-      time2: "00:00 ",
-      time: "FT ",
-      odds: ["1.28", "25.00", "3.45"],
-    
-      isLive: false,
-      isLocked: false,
-      lockedValue: "+65",
-    },
-  ],
-  6: [
-    {
-      id: "match6",
-      team1: "Indonesia Coffee",
-      team2: "Saint George",
-      score1: "10",
-      score2: "5",
-      gameLogo: faVolleyball,
-      gameLogoColor: "red",
-      timeLogo: <FaStopwatch />,
-      time2: "00:00 ",
-      time: "FT ",
-      odds: ["1.45", "-", "2.35"],
-    
-      isLive: false,
-      isLocked: false,
-      lockedValue: "+55",
-    },
-  ],
-  7: [
-    {
-      id: "match7",
-      team1: "Indonesia Coffee",
-      team2: "Saint George",
-      score1: "10",
-      score2: "5",
-      gameLogo: faBasketball,
-      gameLogoColor: "orange",
-      timeLogo: <FaStopwatch />,
-      time2: "00:00 ",
-      time: "FT ",
-      odds: ["1.67", "-", "1.42"],
-    
-      isLive: false,
-      isLocked: false,
-      lockedValue: "+55",
-    },
-  ],
-  8: [
-    {
-      id: "match8",
-      team1: "Indonesia Coffee",
-      team2: "Saint George",
-      score1: "10",
-      score2: "5",
-      gameLogo: faVolleyball,
-      gameLogoColor: "red",
-      timeLogo: <FaStopwatch />,
-      time2: "00:00 ",
-      time: "FT ",
-      odds: ["2.65", "-", "1.42"],
-      
-      isLive: false,
-      isLocked: false,
-      lockedValue: "+55",
-    },
-  ],
-};
-
-const leagueData = [
-  {
-    id: "1",
-    country: "Russia",
-    league: "Liga Pro",
-    flag: "../public/flag/Russia flag.png",
-  },
-  {
-    id: "2",
-    country: "Ethiopia",
-    league: "Premier League",
-    flag: "../public/flag/Ethiopia flag.png",
-  },
-  {
-    id: "3",
-    country: "Indonesia",
-    league: "Liga 4",
-    flag: "../public/flag/Indonasia flag.png", // Corrected path
-  },
-  {
-    id: "4",
-    country: "Nepal",
-    league: "B-Division League",
-    flag: "../public/flag/nepal flag.jpeg", // Corrected path
-  },
-  {
-    id: "5",
-    country: "Nepal",
-    league: "B-Division League",
-    flag: "../public/flag/nepal flag.jpeg", // Corrected path
-  },
-  {
-    id: "6",
-    country: "Nepal",
-    league: "B-Division League",
-    flag: "../public/flag/nepal flag.jpeg", // Corrected path
-  },
-  {
-    id: "7",
-    country: "Nepal",
-    league: "B-Division League",
-    flag: "../public/flag/nepal flag.jpeg", // Corrected path
-  },
-  {
-    id: "8",
-    country: "Nepal",
-    league: "B-Division League",
-    flag: "../public/flag/nepal flag.jpeg", // Corrected path
-  },
-];
 
 export default function Table2() {
+  const { t, i18n } = useTranslation();
+    const { WINNER, HANDICAP, TOTALS, W1, X, W2, HOME, AWAY, OVER, UNDER } =
+      t("Table");
+      const {
+        IzumrudPro,
+        DjokerPro,
+        EthiopianCoffee,
+        SaintGeorge,
+        IndonesiaCoffee,
+        NepalCoffee,
+      } = t("TableData");
+    const { Russia, Ethiopia, Indonesia, Nepal } = t("Country");
+    const { LigaPro, PremierLeague, Liga4, BDivisionLeague } = t("TableLeague");
+   const marketOptions = [
+     { id: "WINNER", label: WINNER, headers: [W1, X, W2] },
+     { id: "HANDICAP", label: HANDICAP, headers: [HOME, AWAY] },
+     { id: "TOTAL", label: TOTALS, headers: [OVER, UNDER] },
+   ];
+ 
+   const sampleMatchData = {
+     1: [
+       {
+         id: "match1",
+         team1: IzumrudPro,
+         team2: DjokerPro,
+         score1: "0",
+         score2: "0",
+         gameLogo: faVolleyball,
+         gameLogoColor: "green", // Red
+         timeLogo: "⏱️ ",
+         time2: "13:30 ",
+         time: "0:0, (0:0) 3'",
+         odds: [2.35, 4, 1],
+         flags: ["red", "green", "red"], // flags for each odds box
+         isLive: true,
+         isLocked: false,
+         lockedValue: "+207",
+       },
+     ],
+     2: [
+       {
+         id: "match2",
+         team1: EthiopianCoffee,
+         team2: SaintGeorge,
+         score1: "1",
+         score2: "1",
+         gameLogo: faVolleyball,
+         gameLogoColor: "green",
+         timeLogo: " ⏱️ ",
+         time2: "13:30 ",
+         time: "2nd Half | 7:5, (4:2) 5'",
+         odds: ["1.85", "3.20", "4.00"],
+         flags: ["red", "none", "green"],
+         isLive: true,
+         isLocked: true,
+         lockedValue: "+40",
+       },
+     ],
+     3: [
+       {
+         id: "match3",
+         team1: IndonesiaCoffee,
+         team2: SaintGeorge,
+         score1: "10",
+         score2: "5",
+         gameLogo: faVolleyball,
+         gameLogoColor: "green",
+         timeLogo: " ⏱️ ",
+         time2: "13:30 ",
+         time: "FT ",
+         odds: ["2.05", "4.20", "2.00"],
+         flags: ["green", "green", "red"],
+         isLive: false,
+         isLocked: true,
+         lockedValue: "+55",
+       },
+     ],
+     4: [
+       {
+         id: "match4",
+         team1: NepalCoffee,
+         team2: SaintGeorge,
+         score1: "10",
+         score2: "5",
+         gameLogo: faBasketball,
+         gameLogoColor: "orange",
+         timeLogo: " ⏱️ ",
+         time2: "13:30 ",
+         time: "FT ",
+         odds: ["2.05", "4.20", "2.00"],
+         flags: ["none", "none", "none"],
+         isLive: false,
+         isLocked: true,
+         lockedValue: "+15",
+       },
+     ],
+     5: [
+       {
+         id: "match5",
+         team1: IndonesiaCoffee,
+         team2: SaintGeorge,
+         score1: "10",
+         score2: "5",
+         gameLogo: faVolleyball,
+         gameLogoColor: "red",
+         timeLogo: " ⏱️ ",
+         time2: "13:30 ",
+         time: "FT ",
+         odds: ["2.05", "4.20", "2.00"],
+         flags: ["green", "green", "red"],
+         isLive: false,
+         isLocked: false,
+         lockedValue: "+65",
+       },
+     ],
+     6: [
+       {
+         id: "match6",
+         team1: IndonesiaCoffee,
+         team2: SaintGeorge,
+         score1: "10",
+         score2: "5",
+         gameLogo: faVolleyball,
+         gameLogoColor: "red",
+         timeLogo: " ⏱️ ",
+         time2: "13:30 ",
+         time: "FT ",
+         odds: ["2.05", "4.20", "2.00"],
+         flags: ["red", "green", "red"],
+         isLive: false,
+         isLocked: true,
+         lockedValue: "+55",
+       },
+     ],
+     7: [
+       {
+         id: "match7",
+         team1: IndonesiaCoffee,
+         team2: SaintGeorge,
+         score1: "10",
+         score2: "5",
+         gameLogo: faBasketball,
+         gameLogoColor: "orange",
+         timeLogo: " ⏱️ ",
+         time2: "13:30 ",
+         time: "FT ",
+         odds: ["2.05", "4.20", "2.00"],
+         flags: ["red", "red", "green"],
+         isLive: false,
+         isLocked: false,
+         lockedValue: "+55",
+       },
+     ],
+     8: [
+       {
+         id: "match8",
+         team1: IndonesiaCoffee,
+         team2: SaintGeorge,
+         score1: "10",
+         score2: "5",
+         gameLogo: faVolleyball,
+         gameLogoColor: "red",
+         timeLogo: " ⏱️ ",
+         time2: "13:30 ",
+         time: "FT ",
+         odds: ["2.05", "4.20", "2.00"],
+         flags: ["green", "green", "red"],
+         isLive: false,
+         isLocked: true,
+         lockedValue: "+55",
+       },
+     ],
+   };
+ 
+   const leagueData = [
+     {
+       id: "1",
+       country: Russia,
+       league: LigaPro,
+       flag: "../public/flag/Russia flag.png",
+     },
+     {
+       id: "2",
+       country: Ethiopia,
+       league: PremierLeague,
+       flag: "../public/flag/Ethiopia flag.png",
+     },
+     {
+       id: "3",
+       country: Indonesia,
+       league: Liga4,
+       flag: "../public/flag/Indonasia flag.png", // Corrected path
+     },
+     {
+       id: "4",
+       country: Nepal,
+       league: BDivisionLeague,
+       flag: "../public/flag/nepal flag.jpeg", // Corrected path
+     },
+     {
+       id: "5",
+       country: Nepal,
+       league: BDivisionLeague,
+       flag: "../public/flag/nepal flag.jpeg", // Corrected path
+     },
+     {
+       id: "6",
+       country: Nepal,
+       league: BDivisionLeague,
+       flag: "../public/flag/nepal flag.jpeg", // Corrected path
+     },
+     {
+       id: "7",
+       country: Nepal,
+       league: BDivisionLeague,
+       flag: "../public/flag/nepal flag.jpeg", // Corrected path
+     },
+     {
+       id: "8",
+       country: Nepal,
+       league: BDivisionLeague,
+       flag: "../public/flag/nepal flag.jpeg", // Corrected path
+     },
+   ];
   const [selectedMarket, setSelectedMarket] = useState(marketOptions[0]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -423,7 +439,7 @@ export default function Table2() {
                   </div>
                 ))}
               </div>
-              <div className="h-[5px] bg-black w-full m-0 border-t border-b border-[#111]"></div>
+              <div className="h-[5px] bg-mainBg w-full m-0 border-t border-b border-[#111]"></div>
             </div>
             // </div>
           );

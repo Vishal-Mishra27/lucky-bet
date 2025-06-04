@@ -44,15 +44,24 @@
 import React from "react";
 import "./Header2.css";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import "../i18";
 
 export default function Header2() {
+  const { t, i18n } = useTranslation();
+  const {
+    EventView,
+    LiveCalendar,
+    Result
+  } = t("GameHeader");
+
   const navigate = useNavigate();
   const location = useLocation();
 
   const menuItems = [
-    { id: "1", name: "Event View", route: "livepage" },
-    { id: "2", name: "Live Calendar", route: "liveCalender" },
-    { id: "3", name: "Result", route: "result" },
+    { id: "1", name: EventView, route: "livepage" },
+    { id: "2", name: LiveCalendar, route: "liveCalender" },
+    { id: "3", name: Result, route: "result" },
   ];
 
   // Get the current sub-route (e.g. 'livepage' from '/live/livepage')

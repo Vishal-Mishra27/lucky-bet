@@ -8,6 +8,8 @@ import { MdOutlineCasino } from 'react-icons/md';
 import { PiListBold } from 'react-icons/pi';
 import { RiRadioButtonLine } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+import "../i18";
 // const gameCategoryTabs = [
 //   { icon: <RiRadioButtonLine className='text-gray' size={20} />, name: "Live", isNotify: true, route: "#" },
 //   { icon: <IoFootball className='text-gray' size={20} />, name: "Sports", isNotify: false, route: "#" },
@@ -21,22 +23,24 @@ import { useNavigate } from 'react-router-dom';
 // ];
 
 function MobileFooter({onOpenModal}) {
+    const { t, i18n } = useTranslation();
+  const { Live, Sports, BetSlips, Casino, Menu } = t("MenuBar");
+
   const navigate = useNavigate()
   const handleNavigation = (route) => {
     navigate(route)
   }
   return (
-    <div className='flex items-center justify-between w-full h-full border-t pt-1'>
+    <div className="flex items-center justify-between w-full h-full border-t pt-1">
       <button
         onClick={() => handleNavigation("/live")}
-        className={`relative  px-4 flex flex-col items-center justify-center h-full gap-1 ${"hover:border-t-[2px]  border-bg4 text-white"
-          }`}
+        className={`relative  px-4 flex flex-col items-center justify-center h-full gap-1 ${"hover:border-t-[2px]  border-bg4 text-white"}`}
       >
-        <div><RiRadioButtonLine className='text-[#ffffff80]' size={22} /></div>
-        <div
-          className="flex items-center text-nowrap rounded-full text-xs xsm:text-[15px] text-textGray transition"
-        >
-          Live
+        <div>
+          <RiRadioButtonLine className="text-[#ffffff80]" size={22} />
+        </div>
+        <div className="flex items-center text-nowrap rounded-full text-xs xsm:text-[15px] text-textGray transition">
+          {Live}
         </div>
         <div className="absolute top-0 z-50 right-1 bg-red text-white text-[10px] p-0.5 rounded-full">
           121
@@ -44,54 +48,50 @@ function MobileFooter({onOpenModal}) {
       </button>
       <button
         onClick={() => handleNavigation("/sports")}
-        className={`relative  px-4 flex flex-col items-center justify-center h-full gap-1 ${"hover:border-t-[2px]  border-bg4 text-white"
-          }`}
+        className={`relative  px-4 flex flex-col items-center justify-center h-full gap-1 ${"hover:border-t-[2px]  border-bg4 text-white"}`}
       >
-        <div><IoMdStopwatch className='text-[#ffffff80]' size={22} /></div>
-        <div
-          className="flex items-center text-nowrap rounded-full text-xs xsm:text-[15px] text-textGray transition"
-        >
-          Sports
+        <div>
+          <IoMdStopwatch className="text-[#ffffff80]" size={22} />
+        </div>
+        <div className="flex items-center text-nowrap rounded-full text-xs xsm:text-[15px] text-textGray transition">
+          {Sports}
         </div>
       </button>
       <button
         onClick={() => onOpenModal("betSlip")}
-        className={`relative  px-4 flex flex-col items-center justify-center h-full gap-1 ${"hover:border-t-[2px]  border-bg4 text-white"
-          }`}
+        className={`relative  px-4 flex flex-col items-center justify-center h-full gap-1 ${"hover:border-t-[2px]  border-bg4 text-white"}`}
       >
-        <div><FaReceipt className='text-[#ffffff80]' size={22} /></div>
-        <div
-          className="flex items-center text-nowrap rounded-full text-xs xsm:text-[15px] text-textGray transition"
-        >
-          Bet Slips
+        <div>
+          <FaReceipt className="text-[#ffffff80]" size={22} />
+        </div>
+        <div className="flex items-center text-nowrap rounded-full text-xs xsm:text-[15px] text-textGray transition">
+          {BetSlips}
         </div>
       </button>
       <button
         onClick={() => handleNavigation("/casino")}
-        className={`relative  px-4 flex flex-col items-center justify-center h-full gap-1 ${"hover:border-t-[2px]  border-bg4 text-white"
-          }`}
+        className={`relative  px-4 flex flex-col items-center justify-center h-full gap-1 ${"hover:border-t-[2px]  border-bg4 text-white"}`}
       >
-        <div><MdOutlineCasino className='text-[#ffffff80]' size={22} /></div>
-        <div
-          className="flex items-center text-nowrap rounded-full text-xs xsm:text-[15px] text-textGray transition"
-        >
-          Casino
+        <div>
+          <MdOutlineCasino className="text-[#ffffff80]" size={22} />
+        </div>
+        <div className="flex items-center text-nowrap rounded-full text-xs xsm:text-[15px] text-textGray transition">
+          {Casino}
         </div>
       </button>
       <button
         onClick={() => onOpenModal("menu")}
-        className={`relative  px-4 flex flex-col items-center justify-center h-full gap-1 ${"hover:border-t-[2px]  border-bg4 text-white"
-          }`}
+        className={`relative  px-4 flex flex-col items-center justify-center h-full gap-1 ${"hover:border-t-[2px]  border-bg4 text-white"}`}
       >
-        <div><PiListBold className='text-[#ffffff80]' size={22} /></div>
-        <div
-          className="flex items-center text-nowrap rounded-full text-xs xsm:text-[15px] text-textGray transition"
-        >
-          Menu
+        <div>
+          <PiListBold className="text-[#ffffff80]" size={22} />
+        </div>
+        <div className="flex items-center text-nowrap rounded-full text-xs xsm:text-[15px] text-textGray transition">
+          {Menu}
         </div>
       </button>
     </div>
-  )
+  );
 }
 
 export default MobileFooter

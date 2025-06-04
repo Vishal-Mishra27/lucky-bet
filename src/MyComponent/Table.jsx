@@ -7,105 +7,125 @@ import {
   faLock,
   faCircle,
 } from "@fortawesome/free-solid-svg-icons";
-
-const marketOptions = [
-  { id: "WINNER", label: "WINNER", headers: ["W1", "X", "W2"] },
-  { id: "HANDICAP", label: "HANDICAP", headers: ["HOME", "AWAY"] },
-  { id: "TOTAL", label: "TOTAL", headers: ["OVER", "UNDER"] },
-];
-
-const sampleMatchData ={
-  1: [
-    {
-      id: "match1",
-      team1: "Izumrud-pro",
-      team2: "Djoker-pro",
-      score1: "0",
-      score2: "0",
-      time: "0:0, (0:0) 3'",
-      odds: [null, null, null],
-      flags: ["none", "none", "green"], // flags for each odds box
-      isLive: true,
-      isLocked: false,
-      lockedValue: "+35",
-    },
-  ],
-  2: [
-    {
-      id: "match2",
-      team1: "Ethiopian Coffee",
-      team2: "Saint George",
-      score1: "1",
-      score2: "1",
-      time: "2nd Half | 7:5, (4:2) 5'",
-      odds: ["1.85", "3.20", "4.00"],
-      flags: ["red", "none", "green"],
-      isLive: true,
-      isLocked: true,
-      lockedValue: "+40",
-    },
-  ],
-  3: [
-    {
-      id: "match2",
-      team1: "Indonesia Coffee",
-      team2: "Saint George",
-      score1: "10",
-      score2: "5",
-      time: "FT",
-      odds: ["2.05", "4.20", "2.00"],
-      flags: ["green", "green", "red"],
-      isLive: false,
-      isLocked: true,
-      lockedValue: "+55",
-    },
-  ],
-  4: [
-    {
-      id: "match2",
-      team1: "Nepal Coffee",
-      team2: "Saint George",
-      score1: "10",
-      score2: "5",
-      time: "FT",
-      odds: ["2.05", "4.20", "2.00"],
-      flags: ["none", "none", "none"],
-      isLive: false,
-      isLocked: true,
-      lockedValue: "+15",
-    },
-  ],
-};
+import { useTranslation } from "react-i18next";
+import "../i18";
+import rusiaflag from "../../public/flag/Russia flag.png"
+import Ethiopiaflag from "../../public/flag/Ethiopia flag.png";
+import IndonesiaFlag from "../../public/flag/Indonasia flag.png";
+import NepalFlag from "../../public/flag/nepal flag.jpeg";
 
 
-const leagueData = [
-  {
-    id: "1",
-    country: "Russia",
-    league: "Liga Pro",
-    flag: "../public/flag/Russia flag.png",
-  },
-  {
-    id: "2",
-    country: "Ethiopia",
-    league: "Premier League",
-    flag: "../public/flag/Ethiopia flag.png",
-  },
-  {
-    id: "3",
-    country: "Indonesia",
-    league: "Liga 4",
-    flag: "../public/flag/Indonasia flag.png", // Corrected path
-  },
-  {
-    id: "4",
-    country: "Nepal",
-    league: "B-Division League",
-    flag: "../public/flag/nepal flag.jpeg", // Corrected path
-  },
-];
 
 export default function Table() {
+    const { t, i18n } = useTranslation();
+  
+  const { WINNER, HANDICAP, TOTALS, W1, X, W2, HOME, AWAY, OVER, UNDER } =
+    t("Table");
+  const { Russia, Ethiopia, Indonesia, Nepal } = t("Country");
+  const { LigaPro, PremierLeague, Liga4, BDivisionLeague } = t("TableLeague");
+  const {
+    IzumrudPro,
+    DjokerPro,
+    EthiopianCoffee,
+    SaintGeorge,
+    IndonesiaCoffee,
+    NepalCoffee
+  } = t("TableData");
+  const marketOptions = [
+    { id: "WINNER", label: WINNER, headers: [W1, X, W2,] },
+    { id: "HANDICAP", label: HANDICAP, headers: [HOME, AWAY] },
+    { id: "TOTAL", label: TOTALS, headers: [OVER, UNDER] },
+  ];
+  const leagueData = [
+    {
+      id: "1",
+      country: Russia,
+      league: LigaPro,
+      flag: rusiaflag,
+    },
+    {
+      id: "2",
+      country: Ethiopia,
+      league: PremierLeague,
+      flag: Ethiopiaflag,
+    },
+    {
+      id: "3",
+      country: Indonesia,
+      league: Liga4,
+      flag: IndonesiaFlag, // Corrected path
+    },
+    {
+      id: "4",
+      country: Nepal,
+      league: BDivisionLeague,
+      flag: NepalFlag, // Corrected path
+    },
+  ];
+  const sampleMatchData = {
+    1: [
+      {
+        id: "match1",
+        team1: IzumrudPro,
+        team2: DjokerPro,
+        score1: "0",
+        score2: "0",
+        time: "0:0, (0:0) 3'",
+        odds: [null, null, null],
+        flags: ["none", "none", "green"], // flags for each odds box
+        isLive: true,
+        isLocked: false,
+        lockedValue: "+35",
+      },
+    ],
+    2: [
+      {
+        id: "match2",
+        team1: EthiopianCoffee,
+        team2: SaintGeorge,
+        score1: "1",
+        score2: "1",
+        time: "2nd Half | 7:5, (4:2) 5'",
+        odds: ["1.85", "3.20", "4.00"],
+        flags: ["red", "none", "green"],
+        isLive: true,
+        isLocked: true,
+        lockedValue: "+40",
+      },
+    ],
+    3: [
+      {
+        id: "match2",
+        team1: IndonesiaCoffee,
+        team2: SaintGeorge,
+        score1: "10",
+        score2: "5",
+        time: "FT",
+        odds: ["2.05", "4.20", "2.00"],
+        flags: ["green", "green", "red"],
+        isLive: false,
+        isLocked: true,
+        lockedValue: "+55",
+      },
+    ],
+    4: [
+      {
+        id: "match2",
+        team1: NepalCoffee,
+        team2: SaintGeorge,
+        score1: "10",
+        score2: "5",
+        time: "FT",
+        odds: ["2.05", "4.20", "2.00"],
+        flags: ["none", "none", "none"],
+        isLive: false,
+        isLocked: true,
+        lockedValue: "+15",
+      },
+    ],
+  };
+  
+
   const [selectedMarket, setSelectedMarket] = useState(marketOptions[0]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);

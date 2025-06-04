@@ -64,13 +64,13 @@ export default function Casino() {
         {/* Sidebar Section for lg+ */}
         <div
           className={`hidden lg:flex flex-col transition-all duration-300 ${
-            isSidebarOpen ? "w-[15%] p-1" : "w-[4%] p-2"
-          } border-r border-none relative`}
+            isSidebarOpen ? "w-[15%] p-4 pr-1" : "w-[8%] p-4"
+          } border-r border-none relative bg-[#07122C]`}
         >
           {/* Toggle Button */}
           <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="absolute left-3 top-8 z-10 bg-[#0b1a38] border border-gray-600 rounded-full p-1 hover:bg-[#11264d]"
+            className="absolute left-3 top-6 z-10 bg-[#0b1a38] border border-gray-600 rounded-full p-1 hover:bg-[#11264d]"
           >
             {isSidebarOpen ? (
               <ChevronLeft size={20} />
@@ -78,25 +78,29 @@ export default function Casino() {
               <ChevronRight size={20} />
             )}
           </button>
+
           {/* <h1>Provider</h1> */}
           {/* Sidebar content */}
-          {isSidebarOpen ? (
-            <>
+          {/* Header: Providers | Games (Always Visible) */}
+          <div className="flex items-center justify-between text-white uppercase text-sm font-semibold px-8 py-2">
+            <div className="flex items-center space-x-4">
+              {/* <ChevronLeft size={16} /> */}
+              <span
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                className="hover:pointer"
+              >
+                Providers
+              </span>
+            </div>
+            {/* <span className="text-gray-400">Games</span> */}
+          </div>
+
+          {/* Sidebar Content */}
+          {isSidebarOpen && (
+            <div className="flex flex-col space-y-0 mt-0">
               <FilterOption />
               <LiveCasinoSearch />
               <LiveCasinoProviderToggle />
-            </>
-          ) : (
-            <div className="flex flex-col justify-start items-center text-white mt-10 space-y-4">
-              {/* Providers + Games Row */}
-              {/* <div className="flex flex-col items-center space-y-2 space-x-15">
-              <div className="flex items-center space-x-15 text-white text-xs font-medium">
-                <ChevronRight size={14} />
-                <span className="uppercase">Providers</span>
-                <div className="h-4 w-px bg-gray-500" />
-               
-              </div>
-            </div> */}
             </div>
           )}
         </div>
